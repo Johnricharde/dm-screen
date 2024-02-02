@@ -1,5 +1,5 @@
-import PageLeft from './LeftPage/PageLeft';
-import PageRight from './RightPage/PageRight';
+import PageLeft from './tabsLeft/PageLeft';
+import PageRight from './tabsRight/PageRight';
 
 export default function App() {
   return (

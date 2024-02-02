@@ -5,6 +5,7 @@ import Npcs from "./Npcs/Npcs";
 import Monsters from "./Monsters";
 import Spells from "./Spells";
 import Rules from "./Rules";
+// eslint-disable-next-line no-unused-vars
 import React, { useState } from "react";
 
 export default function PageLeft() {
