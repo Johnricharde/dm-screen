@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import React, { useState, useEffect } from 'react';
 
 const Spells = () => {
@@ -10,45 +11,34 @@ const Spells = () => {
         // Fetch the spells list
         fetch(spellsListUrl)
             .then(response => response.json())
-            .then(data => {
-                setSpellsList(data.results);
-            })
-            .catch(error => {
-                console.error('Error fetching spells list:', error);
-            });
+            .then(data => setSpellsList(data.results))
+            .catch(error => console.error('Error fetching spells list:', error));
     }, []);
 
     useEffect(() => {
         // Fetch details for the selected spell when searchTerm changes
-        if (searchTerm && spellsList.length > 0) {
-            const selectedSpellIndex = spellsList.find(spell => spell.name.toLowerCase().startsWith(searchTerm.toLowerCase()))?.index;
-            if (selectedSpellIndex) {
-                const selectedSpellUrl = `https://www.dnd5eapi.co/api/spells/${selectedSpellIndex}`;
-                fetch(selectedSpellUrl)
-                    .then(response => response.json())
-                    .then(data => {
+        const fetchSelectedSpell = async () => {
+            if (searchTerm && spellsList.length > 0) {
+                const selectedSpellIndex = spellsList.find(spell => spell.name.toLowerCase().startsWith(searchTerm.toLowerCase()))?.index;
+                if (selectedSpellIndex) {
+                    try {
+                        const response = await fetch(`https://www.dnd5eapi.co/api/spells/${selectedSpellIndex}`);
+                        const data = await response.json();
                         setSelectedSpell(data);
-                    })
-                    .catch(error => {
+                    } catch (error) {
                         console.error('Error fetching spell details:', error);
-                    });
+                    }
+                }
+            } else {
+                setSelectedSpell(null);
             }
-        } else {
-            setSelectedSpell(null);
-        }
+        };
+
+        fetchSelectedSpell();
     }, [searchTerm, spellsList]);
 
-
     // Helper function to convert numeric level to string format
-    const formatSpellLevel = (level) => {
-        if (level === 0) {
-            return "Cantrip";
-        }
-
-        const suffix = ["th", "st", "nd", "rd"];
-        const v = level % 100;
-        return `${level}${(suffix[(v - 20) % 10] || suffix[v] || suffix[0])} level`;
-    };
+    const formatSpellLevel = (level) => (level === 0 ? "Cantrip" : `${level}${[undefined, "st", "nd", "rd"][(level % 100 - 20) % 10] || "th"} level`);
 
     return (
         <div>
@@ -82,37 +72,3 @@ const Spells = () => {
 };
 
 export default Spells;
-// return (
-//     <div>
-//         <input type="text" placeholder="Search.."></input>
-//         <hr />
-
-//         <h1 className="text-2xl font-bold">Burning Hands</h1>
-//         <h2 className="italic">1st-level evocation</h2>
-//         <h2><span className="font-bold">Casting Time: </span>
-//             1 action</h2>
-//         <h2><span className="font-bold">Range: </span>
-//             Self (15-foot cone)</h2>
-//         <h2><span className="font-bold">Components: </span>
-//             V, S</h2>
-//         <h2><span className="font-bold">Duration: </span>
-//             Instantaneous</h2>
-//         <br />
-//         <p>
-//             As you hold your hands with thumbs touching and fingers
-//             spread, a thin sheet of flames shoots forth from your outstretched fingertips. Each creature in a 15-foot cone must
-//             make a Dexterity saving throw. A creature takes 3d6 fire
-//             damage on a failed save, or half as much damage on a
-//             successful one.
-//             The fire ignites any flammable objects in the area that
-//             arent being worn or carried.
-//         </p>
-//         <br />
-//         <h2><span className="font-bold">At Higher Levels. </span>
-//             When you cast this spell using a
-//             spell slot of 2nd level or higher, the damage increases by
-//             1d6 for each slot level above 1st.
-//         </h2>
-//         <hr />
-//     </div>
-// )
