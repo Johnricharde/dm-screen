@@ -53,14 +53,20 @@ const Monsters = () => {
                 <>
                     <h1 className="text-2xl font-bold">{selectedMonster.name}</h1>
                     <h2 className="italic">{selectedMonster.size} {selectedMonster.type} ({selectedMonster.subtype}) {selectedMonster.alignment}</h2>
+                    <hr />
                     <h2><span className="font-bold">Armor Class </span>{selectedMonster.armor_class.value}</h2>
                     <h2><span className="font-bold">Hit Points </span>{selectedMonster.hit_points} ({selectedMonster.hit_dice})</h2>
                     <h2><span className="font-bold">Speed </span>{selectedMonster.speed.walk}</h2>
-                    <h2><span className="font-bold">Initiative </span>{selectedMonster.initiative}</h2>
-                    <br />
-                    <p>{selectedMonster.desc}</p>
-                    <br />
-                    <h2><span className="font-bold">At Higher Levels. </span>{selectedMonster.higher_level}</h2>
+                    <hr />
+                    <h2><span className="font-bold">Initiative </span>||PLACEHOLDER||</h2>
+                    <h2 className="font-bold">STR | DEX | CON | INT | WIS | CHA</h2>
+                    <h3>{selectedMonster.strength} (||) | {selectedMonster.dexterity} (||) | {selectedMonster.constitution} (||) | {selectedMonster.intelligence} (||) | {selectedMonster.wisdom} (||) | {selectedMonster.charisma} (||)</h3>
+                    <hr />
+                    <h2><span className="font-bold">Skills </span>||PLACEHOLDER PROFICIENCIES||</h2>
+                    <h2><span className="font-bold">Languages </span>{selectedMonster.languages}</h2>
+                    <h2><span className="font-bold">Challenge </span>{selectedMonster.challenge_rating} ({selectedMonster.xp} XP)</h2>
+                    <hr />
+                    <p><span className="font-bold italic"></span>||PLACEHOLDER SPECIAL ABILITIES||</p>
                     <hr />
                 </>
             )}
@@ -69,25 +75,3 @@ const Monsters = () => {
 };
 
 export default Monsters;
-//             <h2><span className="font-bold">Initiative</span> +2</h2>
-//             <hr />
-//             <br />
-//             <h2 className="font-bold">STR | DEX | CON | INT | WIS | CHA</h2>
-//             <h3>8 (-1) | 14 (+2) | 10 (+0) | 10 (+0) | 8 (-1) | 8 (-1)</h3>
-//             <hr />
-//             <br />
-//             <h2><span className="font-bold">Skills</span> Stealth +6</h2>
-//             <h2><span className="font-bold">Senses</span> Darkvision 60 ft., Passive Perception 9</h2>
-//             <h2><span className="font-bold">Languages</span> Common, Goblin</h2>
-//             <h2><span className="font-bold">Challenge</span> 1/4 (50 XP)</h2>
-//             <h2><span className="font-bold">Proficiency Bonus</span> +2</h2>
-//             <hr />
-//             <br />
-//             <p> <span className="font-bold italic">Nimble Escape. </span>The goblin can take the Disengage or Hide action as a bonus action on each of its turns.</p>
-//             <br />
-//             <h1 className="text-2xl font-bold">Actions</h1>
-//             <p> <span className="font-bold italic">Scimitar. </span>Melee Weapon Attack: +4 to hit, reach 5 ft., one target. Hit: 5 (1d6 + 2) slashing damage.</p>
-//             <p> <span className="font-bold italic">Shortbow. </span>Ranged Weapon Attack: +4 to hit, range 80/320 ft., one target. Hit: 5 (1d6 + 2) piercing damage.</p>
-//         </div>
-//     )
-// }
