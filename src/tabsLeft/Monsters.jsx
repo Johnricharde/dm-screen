@@ -54,7 +54,7 @@ const Monsters = () => {
                     <h1 className="text-2xl font-bold">{selectedMonster.name}</h1>
                     <h2 className="italic">{selectedMonster.size} {selectedMonster.type} ({selectedMonster.subtype}) {selectedMonster.alignment}</h2>
                     <hr />
-                    <h2><span className="font-bold">Armor Class </span>{selectedMonster.armor_class.value}</h2>
+                    <h2><span className="font-bold">Armor Class </span>{selectedMonster.armor_class[0].value}</h2>
                     <h2><span className="font-bold">Hit Points </span>{selectedMonster.hit_points} ({selectedMonster.hit_dice})</h2>
                     <h2><span className="font-bold">Speed </span>{selectedMonster.speed.walk}</h2>
                     <hr />
