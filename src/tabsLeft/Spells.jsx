@@ -1,9 +1,9 @@
 // eslint-disable-next-line no-unused-vars
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
 const Spells = () => {
     const spellsListUrl = "https://www.dnd5eapi.co/api/spells";
-    const [searchTerm, setSearchTerm] = useState('');
+    const [searchTerm, setSearchTerm] = useState("");
     const [spellsList, setSpellsList] = useState([]);
     const [selectedSpell, setSelectedSpell] = useState(null);
 
@@ -12,7 +12,7 @@ const Spells = () => {
         fetch(spellsListUrl)
             .then(response => response.json())
             .then(data => setSpellsList(data.results))
-            .catch(error => console.error('Error fetching spells list:', error));
+            .catch(error => console.error("Error fetching spells list:", error));
     }, []);
 
     useEffect(() => {
@@ -26,7 +26,7 @@ const Spells = () => {
                         const data = await response.json();
                         setSelectedSpell(data);
                     } catch (error) {
-                        console.error('Error fetching spell details:', error);
+                        console.error("Error fetching spell details:", error);
                     }
                 }
             } else {

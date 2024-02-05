@@ -1,5 +1,6 @@
 // eslint-disable-next-line no-unused-vars
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
+import calculateModifier from "./CalculateModifier";
 
 const Monsters = () => {
     const MonstersListUrl = "https://www.dnd5eapi.co/api/Monsters";
@@ -60,7 +61,14 @@ const Monsters = () => {
                     <hr />
                     <h2><span className="font-bold">Initiative </span>||PLACEHOLDER||</h2>
                     <h2 className="font-bold">STR | DEX | CON | INT | WIS | CHA</h2>
-                    <h3>{selectedMonster.strength} (||) | {selectedMonster.dexterity} (||) | {selectedMonster.constitution} (||) | {selectedMonster.intelligence} (||) | {selectedMonster.wisdom} (||) | {selectedMonster.charisma} (||)</h3>
+                    <h3>
+                        {selectedMonster.strength} ({calculateModifier(selectedMonster.strength)}) |
+                        {selectedMonster.dexterity} ({calculateModifier(selectedMonster.dexterity)}) |
+                        {selectedMonster.constitution} ({calculateModifier(selectedMonster.constitution)}) |
+                        {selectedMonster.intelligence} ({calculateModifier(selectedMonster.intelligence)}) |
+                        {selectedMonster.wisdom} ({calculateModifier(selectedMonster.wisdom)}) |
+                        {selectedMonster.charisma} ({calculateModifier(selectedMonster.charisma)})
+                    </h3>
                     <hr />
                     <h2><span className="font-bold">Skills </span>||PLACEHOLDER PROFICIENCIES||</h2>
                     <h2><span className="font-bold">Languages </span>{selectedMonster.languages}</h2>
