@@ -1,5 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 const Spells = () => {
     const spellsListUrl = "https://www.dnd5eapi.co/api/spells";
@@ -8,10 +9,9 @@ const Spells = () => {
     const [selectedSpell, setSelectedSpell] = useState(null);
 
     useEffect(() => {
-        // Fetch the spells list
-        fetch(spellsListUrl)
-            .then(response => response.json())
-            .then(data => setSpellsList(data.results))
+        // Fetch the spells list using Axios
+        axios.get(spellsListUrl)
+            .then(response => setSpellsList(response.data.results))
             .catch(error => console.error("Error fetching spells list:", error));
     }, []);
 
@@ -22,9 +22,8 @@ const Spells = () => {
                 const selectedSpellIndex = spellsList.find(spell => spell.name.toLowerCase().startsWith(searchTerm.toLowerCase()))?.index;
                 if (selectedSpellIndex) {
                     try {
-                        const response = await fetch(`https://www.dnd5eapi.co/api/spells/${selectedSpellIndex}`);
-                        const data = await response.json();
-                        setSelectedSpell(data);
+                        const response = await axios.get(`https://www.dnd5eapi.co/api/spells/${selectedSpellIndex}`);
+                        setSelectedSpell(response.data);
                     } catch (error) {
                         console.error("Error fetching spell details:", error);
                     }
