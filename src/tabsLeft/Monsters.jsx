@@ -3,30 +3,30 @@ import React, { useState, useEffect } from 'react';
 
 const Monsters = () => {
     const MonstersListUrl = "https://www.dnd5eapi.co/api/Monsters";
-    const [searchTerm, setSearchTerm] = useState('');
+    const [searchTerm, setSearchTerm] = useState("");
     const [MonstersList, setMonstersList] = useState([]);
     const [selectedMonster, setSelectedMonster] = useState(null);
 
     useEffect(() => {
-        // Fetch the monsters list
+        // Fetches the monsters list from the API
         fetch(MonstersListUrl)
             .then(response => response.json())
             .then(data => setMonstersList(data.results))
-            .catch(error => console.error('Error fetching Monsters list:', error));
+            .catch(error => console.error("Error fetching Monsters list:", error));
     }, []);
 
     useEffect(() => {
         // Fetch details for the selected monster when searchTerm changes
         const fetchSelectedMonster = async () => {
             if (searchTerm && MonstersList.length > 0) {
-                const selectedMonsterIndex = MonstersList.find(Monster => Monster.name.toLowerCase().startsWith(searchTerm.toLowerCase()))?.index;
+                const selectedMonsterIndex = MonstersList.find(monster => monster.name.toLowerCase().startsWith(searchTerm.toLowerCase()))?.index;
                 if (selectedMonsterIndex) {
                     try {
-                        const response = await fetch(`https://www.dnd5eapi.co/api/Monsters/${selectedMonsterIndex}`);
+                        const response = await fetch(`https://www.dnd5eapi.co/api/monsters/${selectedMonsterIndex}`);
                         const data = await response.json();
                         setSelectedMonster(data);
                     } catch (error) {
-                        console.error('Error fetching Monster details:', error);
+                        console.error("Error fetching Monster details:", error);
                     }
                 }
             } else {
