@@ -37,6 +37,19 @@ const Monsters = () => {
         fetchSelectedMonster();
     }, [searchTerm, MonstersList]);
 
+    function getObjects(array) {
+        const objectsArray = array;
+        const object = objectsArray.map((action, index) => (
+            <>
+                <p key={index}>
+                    <span className="font-bold italic">{action.name}. </span>
+                    {action.desc}
+                </p>
+                <br />
+            </>
+        ));
+        return object;
+    }
 
     return (
         <div>
@@ -59,22 +72,39 @@ const Monsters = () => {
                     <h2><span className="font-bold">Armor Class </span>{selectedMonster.armor_class[0].value}</h2>
                     <h2><span className="font-bold">Hit Points </span>{selectedMonster.hit_points} ({selectedMonster.hit_dice})</h2>
                     <h2><span className="font-bold">Speed </span>{selectedMonster.speed.walk}</h2>
-
-                    <hr />
                     <h2><span className="font-bold">Initiative </span>{calculateModifier(selectedMonster.dexterity)}</h2>
-                    <h2 className="font-bold">STR | DEX | CON | INT | WIS | CHA</h2>
-                    <h3>
-                        {selectedMonster.strength} ({calculateModifier(selectedMonster.strength)}) |
-                        {selectedMonster.dexterity} ({calculateModifier(selectedMonster.dexterity)}) |
-                        {selectedMonster.constitution} ({calculateModifier(selectedMonster.constitution)}) |
-                        {selectedMonster.intelligence} ({calculateModifier(selectedMonster.intelligence)}) |
-                        {selectedMonster.wisdom} ({calculateModifier(selectedMonster.wisdom)}) |
-                        {selectedMonster.charisma} ({calculateModifier(selectedMonster.charisma)})
-                    </h3>
-
                     <hr />
-                    <h2><span className="font-bold">Skills </span>
-                        ||PLACEHOLDER PROFICIENCIES||
+                    <h2 className="font-bold flex justify-around"></h2>
+                    <h3 className="flex pb-2">
+                        <div className="px-3">
+                            <div className="font-bold flex justify-center">STR</div>
+                            {selectedMonster.strength} ({calculateModifier(selectedMonster.strength)})
+                        </div>
+                        <div className="px-3">
+                            <div className="font-bold flex justify-center">DEX</div>
+                            {selectedMonster.dexterity} ({calculateModifier(selectedMonster.dexterity)})
+                        </div>
+                        <div className="px-3">
+                            <div className="font-bold flex justify-center">CON</div>
+                            {selectedMonster.constitution} ({calculateModifier(selectedMonster.constitution)})
+                        </div>
+                        <div className="px-3">
+                            <div className="font-bold flex justify-center">INT</div>
+                            {selectedMonster.intelligence} ({calculateModifier(selectedMonster.intelligence)})
+                        </div>
+                        <div className="px-3">
+                            <div className="font-bold flex justify-center">WIS</div>
+                            {selectedMonster.wisdom} ({calculateModifier(selectedMonster.wisdom)})
+                        </div>
+                        <div className="px-3">
+                            <div className="font-bold flex justify-center">CHA</div>
+                            {selectedMonster.charisma} ({calculateModifier(selectedMonster.charisma)})
+                        </div>
+                    </h3>
+                    <hr />
+                    <h2><span className="font-bold">Senses </span>
+                        Darkvision {selectedMonster.senses.darkvision},
+                        Passive Perception {selectedMonster.senses.passive_perception}
                     </h2>
 
                     <h2><span className="font-bold">Languages </span>
@@ -83,9 +113,16 @@ const Monsters = () => {
                     <h2><span className="font-bold">Challenge </span>
                         {selectedMonster.challenge_rating} ({selectedMonster.xp} XP)
                     </h2>
+                    <h2><span className="font-bold">Proficiency Bonus </span>
+                        +{selectedMonster.proficiency_bonus}
+                    </h2>
+                    <br />
 
                     <hr />
-                    <p><span className="font-bold italic"></span>||PLACEHOLDER SPECIAL ABILITIES||</p>
+                    {getObjects(selectedMonster.special_abilities)}
+                    <h1 className="text-2xl font-bold">Actions</h1>
+                    <hr />
+                    {getObjects(selectedMonster.actions)}
                     <hr />
                 </>
             )}
