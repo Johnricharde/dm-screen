@@ -10,8 +10,6 @@ This is what this project is going to try to remedy.
 
 For those who are already familiar with D&D, here are some of the things that this app might be able to help with:
 - Easy Search access to information contained within the D&D 5E rulebook, spellbook or bestiary.
-- Keep track of the initiativ order in combat while also displaying the current initiativ holders abilities
-  (Example: If it's a goblins turn then it will display your available actions as "Nimble Escape", "Schimitar" and "Shortbow")
 - Keep your own personal notes within the web-app.
 
   Other functionality might be added as the project grows.
@@ -20,16 +18,17 @@ For those who are already familiar with D&D, here are some of the things that th
 ### Tech:
 - React.js
 - Vite
-- TypeScript
+- Axios
 - Tailwind CSS
 - VS Code
 
 ### Other:
 ### Acknowledgements:
 - Original Concept idea came from Stian Sundby at GET Academy
-- It has not yet been implemented but this app will eventually use a "D&D 5th edition" API.
+- This app uses the D&D API from "https://www.dnd5eapi.co".
+  
 ### Lessons learned:
-Familiarized myself with React.js, Vite and Tailwind CSS.
+Familiarized myself with React.js, APIs, Vite and Tailwind CSS.
 
 
 
