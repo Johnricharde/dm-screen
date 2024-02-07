@@ -1,7 +1,7 @@
 export default function Rules() {
     return (
         <div>
-            <input type="text" placeholder="Search.."></input>
+            <input type="search" placeholder="Search.."></input>
             <hr />
             <h1 className="text-2xl font-bold">Petrified</h1>
             <ul className="list-disc list-inside">

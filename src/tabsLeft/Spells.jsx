@@ -43,7 +43,7 @@ const Spells = () => {
         <div>
             {/* Search bar */}
             <input
-                type="text"
+                type="search"
                 placeholder="Search for a spell..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
