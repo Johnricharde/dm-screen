@@ -22,9 +22,9 @@ function getObjects(array) {
 
 
 const Monsters = () => {
-    const MonstersListUrl = "https://www.dnd5eapi.co/api/Monsters";
+    const monstersListUrl = "https://www.dnd5eapi.co/api/Monsters";
     const [searchTerm, setSearchTerm] = useState("");
-    const [MonstersList, setMonstersList] = useState([]);
+    const [monstersList, setMonstersList] = useState([]);
     const [selectedMonster, setSelectedMonster] = useState(null);
     const [suggestions, setSuggestions] = useState([]);
     const [selectedSuggestionIndex, setSelectedSuggestionIndex] = useState(-1);
@@ -32,7 +32,7 @@ const Monsters = () => {
 
     useEffect(() => {
         // Fetches the monsters list from the API using Axios
-        axios.get(MonstersListUrl)
+        axios.get(monstersListUrl)
             .then(response => setMonstersList(response.data.results))
             .catch(error => console.error("Error fetching Monsters list:", error));
     }, []);
@@ -40,7 +40,7 @@ const Monsters = () => {
     useEffect(() => {
         // Filter monster suggestions based on search term
         if (searchTerm.length > 0) {
-            const filteredSuggestions = MonstersList.filter(monster =>
+            const filteredSuggestions = monstersList.filter(monster =>
                 monster.name.toLowerCase().startsWith(searchTerm.toLowerCase())
             );
             setSuggestions(filteredSuggestions);
@@ -48,7 +48,7 @@ const Monsters = () => {
             setSuggestions([]);
         }
         setSelectedSuggestionIndex(-1); // Reset selected suggestion index when search term changes
-    }, [searchTerm, MonstersList]);
+    }, [searchTerm, monstersList]);
 
     async function fetchSelectedMonster(index) {
         try {
@@ -77,6 +77,19 @@ const Monsters = () => {
         } else if (event.key === "Enter" && selectedSuggestionIndex !== -1) {
             event.preventDefault();
             handleSelectMonster(suggestions[selectedSuggestionIndex]);
+        }
+    }
+
+    function formatChallengeRating(challengeRating) {
+        switch (challengeRating) {
+            case 0.125:
+                return "1/8";
+            case 0.25:
+                return "1/4";
+            case 0.5:
+                return "1/2";
+            default:
+                return challengeRating.toString();
         }
     }
 
@@ -161,8 +174,9 @@ const Monsters = () => {
                     <h2><span className="font-bold">Languages </span>
                         {selectedMonster.languages}
                     </h2>
-                    <h2><span className="font-bold">Challenge </span>
-                        {selectedMonster.challenge_rating} ({selectedMonster.xp} XP)
+                    <h2>
+                        <span className="font-bold">Challenge </span>
+                        {formatChallengeRating(selectedMonster.challenge_rating)} ({selectedMonster.xp} XP)
                     </h2>
                     <h2><span className="font-bold">Proficiency Bonus </span>
                         +{selectedMonster.proficiency_bonus}
