@@ -1,9 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
-import calculateModifier from "./CalculateModifier";
-
-
+import { calculateModifier, formatChallengeRating } from "./formatTools";
 
 function getObjects(array) {
     const objectsArray = array;
@@ -77,19 +75,6 @@ const Monsters = () => {
         } else if (event.key === "Enter" && selectedSuggestionIndex !== -1) {
             event.preventDefault();
             handleSelectMonster(suggestions[selectedSuggestionIndex]);
-        }
-    }
-
-    function formatChallengeRating(challengeRating) {
-        switch (challengeRating) {
-            case 0.125:
-                return "1/8";
-            case 0.25:
-                return "1/4";
-            case 0.5:
-                return "1/2";
-            default:
-                return challengeRating.toString();
         }
     }
 
