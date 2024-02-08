@@ -3,6 +3,24 @@ import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import calculateModifier from "./CalculateModifier";
 
+
+
+function getObjects(array) {
+    const objectsArray = array;
+    const object = objectsArray.map((action, index) => (
+        <>
+            <p key={index}>
+                <span className="font-bold italic">{action.name}. </span>
+                {action.desc}
+            </p>
+            <br />
+        </>
+    ));
+    return object;
+}
+
+
+
 const Monsters = () => {
     const MonstersListUrl = "https://www.dnd5eapi.co/api/Monsters";
     const [searchTerm, setSearchTerm] = useState("");
@@ -62,20 +80,6 @@ const Monsters = () => {
         }
     }
 
-    function getObjects(array) {
-        const objectsArray = array;
-        const object = objectsArray.map((action, index) => (
-            <>
-                <p key={index}>
-                    <span className="font-bold italic">{action.name}. </span>
-                    {action.desc}
-                </p>
-                <br />
-            </>
-        ));
-        return object;
-    }
-
     return (
         <div>
             {/* Search bar with autocomplete */}
@@ -108,7 +112,12 @@ const Monsters = () => {
                 <>
                     {/* Monster details */}
                     <h1 className="text-2xl font-bold">{selectedMonster.name}</h1>
-                    <h2 className="italic">{selectedMonster.size} {selectedMonster.type} ({selectedMonster.subtype}) {selectedMonster.alignment}</h2>
+                    <h2 className="italic">
+                        {selectedMonster.size + ' '}
+                        {selectedMonster.type}
+                        {selectedMonster.subtype ? ' (' + selectedMonster.subtype + ')' : null},
+                        {' ' + selectedMonster.alignment}
+                    </h2>
 
                     <hr />
                     <h2><span className="font-bold">Armor Class </span>{selectedMonster.armor_class[0].value}</h2>
