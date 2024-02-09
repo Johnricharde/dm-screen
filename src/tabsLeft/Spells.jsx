@@ -6,7 +6,7 @@ import Search from "./Search";
 const Spells = () => {
     const [selectedSpell, setSelectedSpell] = useState(null);
 
-    async function fetchSelectedMonster(index) {
+    async function fetchSelectedSpell(index) {
         try {
             const response = await axios.get(`https://www.dnd5eapi.co/api/spells/${index}`);
             setSelectedSpell(response.data);
@@ -22,8 +22,8 @@ const Spells = () => {
         <div>
             {/* Search bar with autocomplete */}
             <Search
-                apiEndpoint="https://www.dnd5eapi.co/api/Spells"
-                fetchSelectedEntity={fetchSelectedMonster} />
+                apiEndpoint="https://www.dnd5eapi.co/api/spells"
+                fetchSelectedEntity={fetchSelectedSpell} />
 
             {/* Display the filtered spell */}
             {selectedSpell && (

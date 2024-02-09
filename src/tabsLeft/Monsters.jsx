@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-unused-vars
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { calculateModifier, formatChallengeRating } from "./formatTools";
 import Search from "./Search.jsx";
@@ -22,7 +22,7 @@ const Monsters = () => {
         <div>
             {/* Search bar with autocomplete */}
             <Search
-                apiEndpoint="https://www.dnd5eapi.co/api/Monsters"
+                apiEndpoint="https://www.dnd5eapi.co/api/monsters"
                 fetchSelectedEntity={fetchSelectedMonster} />
 
             {/* Display the selected Monster */}
