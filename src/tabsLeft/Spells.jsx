@@ -36,13 +36,19 @@ const Spells = () => {
                     <h2><span className="font-bold">Duration: </span>{selectedSpell.duration}</h2>
                     <br />
                     <p>{selectedSpell.desc}</p>
+                    {
+                        selectedSpell.higher_level != 0 && (
+                            <h2>
+                                <br />
+                                <span className="font-bold">At Higher Levels. </span>
+                                {selectedSpell.higher_level}
+                            </h2>
+                        )}
                     <br />
-                    <h2><span className="font-bold">At Higher Levels. </span>{selectedSpell.higher_level}</h2>
                     <hr />
                 </>
             )}
         </div>
     );
 };
-
 export default Spells;
