@@ -3,20 +3,6 @@ import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { calculateModifier, formatChallengeRating } from "./formatTools";
 
-function getObjects(array) {
-    const objectsArray = array;
-    const object = objectsArray.map((action, index) => (
-        <>
-            <p key={index}>
-                <span className="font-bold italic">{action.name}. </span>
-                {action.desc}
-            </p>
-            <br />
-        </>
-    ));
-    return object;
-}
-
 
 
 const Monsters = () => {
@@ -39,7 +25,7 @@ const Monsters = () => {
         // Filter monster suggestions based on search term
         if (searchTerm.length > 0) {
             const filteredSuggestions = monstersList.filter(monster =>
-                monster.name.toLowerCase().startsWith(searchTerm.toLowerCase())
+                monster.name.toLowerCase().includes(searchTerm.toLowerCase())
             );
             setSuggestions(filteredSuggestions);
         } else {
@@ -57,14 +43,7 @@ const Monsters = () => {
         }
     }
 
-    function handleSelectMonster(monster) {
-        setSearchTerm(monster.name);
-        fetchSelectedMonster(monster.index);
-        setSuggestions([]); // Clear suggestions when a monster is selected
-        setSearchTerm(""); // Clear search term to hide the dropdown box
-        inputRef.current.focus(); // Set focus back to the input field after selection
-    }
-
+    // Handles keyboard events for navigating through autocomplete suggestions and selecting a monster
     function handleKeyDown(event) {
         if (event.key === "ArrowUp") {
             event.preventDefault();
@@ -76,6 +55,13 @@ const Monsters = () => {
             event.preventDefault();
             handleSelectMonster(suggestions[selectedSuggestionIndex]);
         }
+    } // Handles the selection of a monster from the dropdown list or via keyboard navigation
+    function handleSelectMonster(monster) {
+        setSearchTerm(monster.name); // Updates the search term with the selected monster's name
+        fetchSelectedMonster(monster.index); // Fetches the details of the selected monster
+        setSuggestions([]); // Clear suggestions when a monster is selected
+        setSearchTerm(""); // Clear search term to hide the dropdown box
+        inputRef.current.focus(); // Set focus back to the input field after selection
     }
 
     return (
@@ -179,5 +165,21 @@ const Monsters = () => {
         </div>
     );
 };
+
+
+
+function getObjects(array) {
+    const objectsArray = array;
+    const object = objectsArray.map((action, index) => (
+        <>
+            <p key={index}>
+                <span className="font-bold italic">{action.name}. </span>
+                {action.desc}
+            </p>
+            <br />
+        </>
+    ));
+    return object;
+}
 
 export default Monsters;
