@@ -2,37 +2,12 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { calculateModifier, formatChallengeRating } from "./formatTools";
+import Search from "./Search.jsx";
 
 
 
 const Monsters = () => {
-    const monstersListUrl = "https://www.dnd5eapi.co/api/Monsters";
-    const [searchTerm, setSearchTerm] = useState("");
-    const [monstersList, setMonstersList] = useState([]);
     const [selectedMonster, setSelectedMonster] = useState(null);
-    const [suggestions, setSuggestions] = useState([]);
-    const [selectedSuggestionIndex, setSelectedSuggestionIndex] = useState(-1);
-    const inputRef = useRef(null);
-
-    useEffect(() => {
-        // Fetches the monsters list from the API using Axios
-        axios.get(monstersListUrl)
-            .then(response => setMonstersList(response.data.results))
-            .catch(error => console.error("Error fetching Monsters list:", error));
-    }, []);
-
-    useEffect(() => {
-        // Filter monster suggestions based on search term
-        if (searchTerm.length > 0) {
-            const filteredSuggestions = monstersList.filter(monster =>
-                monster.name.toLowerCase().includes(searchTerm.toLowerCase())
-            );
-            setSuggestions(filteredSuggestions);
-        } else {
-            setSuggestions([]);
-        }
-        setSelectedSuggestionIndex(-1); // Reset selected suggestion index when search term changes
-    }, [searchTerm, monstersList]);
 
     async function fetchSelectedMonster(index) {
         try {
@@ -43,53 +18,12 @@ const Monsters = () => {
         }
     }
 
-    // Handles keyboard events for navigating through autocomplete suggestions and selecting a monster
-    function handleKeyDown(event) {
-        if (event.key === "ArrowUp") {
-            event.preventDefault();
-            setSelectedSuggestionIndex(prevIndex => (prevIndex > 0 ? prevIndex - 1 : suggestions.length - 1));
-        } else if (event.key === "ArrowDown") {
-            event.preventDefault();
-            setSelectedSuggestionIndex(prevIndex => (prevIndex < suggestions.length - 1 ? prevIndex + 1 : 0));
-        } else if (event.key === "Enter" && selectedSuggestionIndex !== -1) {
-            event.preventDefault();
-            handleSelectMonster(suggestions[selectedSuggestionIndex]);
-        }
-    } // Handles the selection of a monster from the dropdown list or via keyboard navigation
-    function handleSelectMonster(monster) {
-        setSearchTerm(monster.name); // Updates the search term with the selected monster's name
-        fetchSelectedMonster(monster.index); // Fetches the details of the selected monster
-        setSuggestions([]); // Clear suggestions when a monster is selected
-        setSearchTerm(""); // Clear search term to hide the dropdown box
-        inputRef.current.focus(); // Set focus back to the input field after selection
-    }
-
     return (
         <div>
             {/* Search bar with autocomplete */}
-            <input
-                type="text"
-                placeholder="Search for a monster..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                onKeyDown={handleKeyDown}
-                ref={inputRef}
-            />
-            {/* Dropdown for autocomplete suggestions */}
-            {suggestions.length > 0 && (
-                <div className="dropdown">
-                    {suggestions.map((monster, index) => (
-                        <div
-                            key={index}
-                            className={`dropdown-row ${index === selectedSuggestionIndex ? "selected bg-gray-200" : ""}`}
-                            onClick={() => handleSelectMonster(monster)}
-                        >
-                            {monster.name}
-                        </div>
-                    ))}
-                </div>
-            )}
-            <hr />
+            <Search
+                apiEndpoint="https://www.dnd5eapi.co/api/Monsters"
+                fetchSelectedEntity={fetchSelectedMonster} />
 
             {/* Display the selected Monster */}
             {selectedMonster && (
@@ -169,8 +103,7 @@ const Monsters = () => {
 
 
 function getObjects(array) {
-    const objectsArray = array;
-    const object = objectsArray.map((action, index) => (
+    const object = array.map((action, index) => (
         <>
             <p key={index}>
                 <span className="font-bold italic">{action.name}. </span>
