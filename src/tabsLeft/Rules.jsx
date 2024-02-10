@@ -8,18 +8,36 @@ export default function Rules() {
 
     async function fetchSelectedRule(index) {
         try {
-            const response = await axios.get(`https://www.dnd5eapi.co/api/rules/${index}`);
+            const response = await axios.get(`https://www.dnd5eapi.co/api/rule-sections/${index}`);
             setSelectedRule(response.data);
         } catch (error) {
             console.error("Error fetching rule details:", error);
         }
     }
 
+
+
+    // function flattenObj(obj) {
+    //     let result = {};
+    //     for (const i in obj) {
+    //         if (typeof obj[i] === "object" && !Array.isArray(obj[i])) {
+    //             const temp = flattenObj(obj[i]);
+    //             for (const j in temp) {
+    //                 result[i + "/" + j] = temp[j];
+    //             }
+    //         } else {
+    //             result[i] = obj[i];
+    //         }
+    //     }
+    //     return result;
+    // }
+
+
     return (
         <div>
             {/* Search bar with autocomplete */}
             <Search
-                apiEndpoint="https://www.dnd5eapi.co/api/rules"
+                apiEndpoint="https://www.dnd5eapi.co/api/rule-sections"
                 fetchSelectedEntity={fetchSelectedRule} />
 
             {/* Display the filtered spell */}
