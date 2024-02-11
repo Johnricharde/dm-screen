@@ -1,5 +1,6 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useState } from "react";
+import ReactMarkdown from 'react-markdown';
 import axios from "axios";
 import Search from "./Search";
 
@@ -44,7 +45,7 @@ export default function Rules() {
             {selectedRule && (
                 <>
                     <h1 className="text-2xl font-bold">{selectedRule.name}</h1>
-                    <p>{selectedRule.desc}</p>
+                    <ReactMarkdown>{selectedRule.desc}</ReactMarkdown>
                     <br />
                     <hr />
                 </>
