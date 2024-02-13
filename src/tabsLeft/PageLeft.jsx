@@ -2,9 +2,9 @@ import Page from '../Page';
 import Players from "./Players/Players";
 import Notes from "./Notes";
 import Npcs from "./Npcs/Npcs";
-import Monsters from "./Monsters";
-import Spells from "./Spells";
-import Rules from "./Rules";
+import Monsters from "./Search/Monsters";
+import Spells from "./Search/Spells";
+import Rules from "./Search/Rules";
 // eslint-disable-next-line no-unused-vars
 import React, { useState } from "react";
 
