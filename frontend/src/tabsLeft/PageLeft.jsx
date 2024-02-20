@@ -1,4 +1,4 @@
-import Page from '../Page';
+import Page from '../../src/Page';
 import Players from "./Players/Players";
 import Notes from "./Notes";
 import Npcs from "./Npcs/Npcs";
