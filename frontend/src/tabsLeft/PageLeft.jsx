@@ -17,7 +17,7 @@ export default function PageLeft() {
             <nav>
                 <button onClick={() => setActiveComponent("Players")}>PLAYERS</button>
                 <button onClick={() => setActiveComponent("Notes")}>NOTES</button>
-                <button onClick={() => setActiveComponent("Npcs")}>CHARACTERS</button>
+                <button onClick={() => setActiveComponent("Npcs")}>NPC</button>
                 <button onClick={() => setActiveComponent("Monsters")}>MONSTERS</button>
                 <button onClick={() => setActiveComponent("Spells")}>SPELLS</button>
                 <button onClick={() => setActiveComponent("Rules")}>RULES</button>

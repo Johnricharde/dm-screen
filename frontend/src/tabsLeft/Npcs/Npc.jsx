@@ -1,4 +1,5 @@
 export default function Npc() {
+
     return (
         <div>
             <h3><span className="font-bold">Name:</span>Bill the Merchant</h3>
