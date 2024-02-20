@@ -1,7 +1,9 @@
+import dungeonMap from "../assets/crocadile_god_map.jpg";
+
 export default function DungeonMap() {
     return (
         <div>
-            <img src="../assets/crocadile_god_map.jpg" />
+            <img src={dungeonMap} alt="Dungeon map" />
         </div>
     )
 }
