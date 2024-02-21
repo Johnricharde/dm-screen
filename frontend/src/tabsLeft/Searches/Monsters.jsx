@@ -44,30 +44,30 @@ const Monsters = () => {
                     <h2><span className="font-bold">Initiative </span>{calculateModifier(selectedMonster.dexterity)}</h2>
                     <hr />
                     <h2 className="font-bold flex justify-around"></h2>
-                    <h3 className="flex pb-2">
+                    <h3 className="flex flex-wrap pb-2">
                         <div className="px-3">
                             <div className="font-bold flex justify-center">STR</div>
-                            {selectedMonster.strength} ({calculateModifier(selectedMonster.strength)})
+                            <div className="text-nowrap">{selectedMonster.strength} ({calculateModifier(selectedMonster.strength)})</div>
                         </div>
                         <div className="px-3">
                             <div className="font-bold flex justify-center">DEX</div>
-                            {selectedMonster.dexterity} ({calculateModifier(selectedMonster.dexterity)})
+                            <div className="text-nowrap">{selectedMonster.dexterity} ({calculateModifier(selectedMonster.dexterity)})</div>
                         </div>
                         <div className="px-3">
                             <div className="font-bold flex justify-center">CON</div>
-                            {selectedMonster.constitution} ({calculateModifier(selectedMonster.constitution)})
+                            <div className="text-nowrap">{selectedMonster.constitution} ({calculateModifier(selectedMonster.constitution)})</div>
                         </div>
                         <div className="px-3">
                             <div className="font-bold flex justify-center">INT</div>
-                            {selectedMonster.intelligence} ({calculateModifier(selectedMonster.intelligence)})
+                            <div className="text-nowrap">{selectedMonster.intelligence} ({calculateModifier(selectedMonster.intelligence)})</div>
                         </div>
                         <div className="px-3">
                             <div className="font-bold flex justify-center">WIS</div>
-                            {selectedMonster.wisdom} ({calculateModifier(selectedMonster.wisdom)})
+                            <div className="text-nowrap">{selectedMonster.wisdom} ({calculateModifier(selectedMonster.wisdom)})</div>
                         </div>
                         <div className="px-3">
                             <div className="font-bold flex justify-center">CHA</div>
-                            {selectedMonster.charisma} ({calculateModifier(selectedMonster.charisma)})
+                            <div className="text-nowrap">{selectedMonster.charisma} ({calculateModifier(selectedMonster.charisma)})</div>
                         </div>
                     </h3>
                     <hr />
