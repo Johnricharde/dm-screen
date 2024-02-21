@@ -11,11 +11,11 @@ export default function PageRight() {
 
     return (
         <Page>
-            <nav>
-                <button className="px-3 py-1 m-1 bg-gray-700 text-white" onClick={() => setActiveComponent("Combat")}>
+            <nav className="my-1 flex flex-wrap">
+                <button className="flex-grow py-1 m-1 bg-gray-700 text-white" onClick={() => setActiveComponent("Combat")}>
                     COMBAT
                 </button>
-                <button className="px-3 py-1 m-1 bg-gray-700 text-white" onClick={() => setActiveComponent("DungeonMap")}>
+                <button className="flex-grow py-1 m-1 bg-gray-700 text-white" onClick={() => setActiveComponent("DungeonMap")}>
                     DUNGEON MAP
                 </button>
             </nav>

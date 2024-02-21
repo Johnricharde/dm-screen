@@ -2,7 +2,7 @@ import dungeonMap from "../assets/crocadile_god_map.jpg";
 
 export default function DungeonMap() {
     return (
-        <div className="p-1">
+        <div className="px-1 py-2">
             <img className="rounded-lg" src={dungeonMap} alt="Dungeon map" />
         </div>
     )

@@ -61,6 +61,7 @@ const Search = ({ apiEndpoint, fetchSelectedEntity }) => {
         <div>
             {/* Search bar with autocomplete */}
             <input
+                className="border-s border-e pl-2 w-1/2 p-1"
                 type="text"
                 placeholder="Search..."
                 value={searchTerm}
