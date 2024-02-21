@@ -15,12 +15,12 @@ export default function PageLeft() {
     return (
         <Page>
             <nav>
-                <button onClick={() => setActiveComponent("Players")}>PLAYERS</button>
-                <button onClick={() => setActiveComponent("Notes")}>NOTES</button>
-                <button onClick={() => setActiveComponent("Npcs")}>NPC</button>
-                <button onClick={() => setActiveComponent("Monsters")}>MONSTERS</button>
-                <button onClick={() => setActiveComponent("Spells")}>SPELLS</button>
-                <button onClick={() => setActiveComponent("Rules")}>RULES</button>
+                <button className="px-3 py-1 m-1 bg-gray-700 text-white" onClick={() => setActiveComponent("Players")}>PLAYERS</button>
+                <button className="px-3 py-1 m-1 bg-gray-700 text-white" onClick={() => setActiveComponent("Notes")}>NOTES</button>
+                <button className="px-3 py-1 m-1 bg-gray-700 text-white" onClick={() => setActiveComponent("Npcs")}>NPC</button>
+                <button className="px-3 py-1 m-1 bg-gray-700 text-white" onClick={() => setActiveComponent("Monsters")}>MONSTERS</button>
+                <button className="px-3 py-1 m-1 bg-gray-700 text-white" onClick={() => setActiveComponent("Spells")}>SPELLS</button>
+                <button className="px-3 py-1 m-1 bg-gray-700 text-white" onClick={() => setActiveComponent("Rules")}>RULES</button>
             </nav>
             <hr />
             {activeComponent === 'Players' && <Players />}
