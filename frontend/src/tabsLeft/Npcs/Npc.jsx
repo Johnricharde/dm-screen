@@ -1,6 +1,6 @@
 async function fetchCharacters() {
     try {
-        const response = await fetch('http://localhost:3000/api/playerCharacters');
+        const response = await fetch('http://localhost:3000/api/nonPlayerCharacters');
         const data = await response.json();
         console.log([data]);
     } catch (error) {
