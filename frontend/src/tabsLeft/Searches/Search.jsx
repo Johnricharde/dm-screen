@@ -14,11 +14,15 @@ const Search = ({ apiEndpoint, fetchSelectedEntity }) => {
         if (searchTerm.length > 0) {
             axios.get(`${apiEndpoint}?name=${searchTerm}`)
                 .then(response => {
-                    // Filter suggestions that start with the search term
-                    const startsWithSearchTerm = response.data.results.filter(result => result.name.toLowerCase().startsWith(searchTerm.toLowerCase()));
+                    // Filter suggestions that start with the search term THEN sorts the result in alphabetical order
+                    const startsWithSearchTerm = response.data.results
+                        .filter(result => result.name.toLowerCase().startsWith(searchTerm.toLowerCase()))
+                        .sort((a, b) => a.name.localeCompare(b.name));
 
-                    // Filter suggestions that include the search term but doesn't start with it
-                    const includesSearchTerm = response.data.results.filter(result => !result.name.toLowerCase().startsWith(searchTerm.toLowerCase()) && result.name.toLowerCase().includes(searchTerm.toLowerCase()));
+                    // Filter suggestions that include the search term but doesn't start with it THEN sorts the result in alphabetical order
+                    const includesSearchTerm = response.data.results
+                        .filter(result => !result.name.toLowerCase().startsWith(searchTerm.toLowerCase()) && result.name.toLowerCase().includes(searchTerm.toLowerCase()))
+                        .sort((a, b) => a.name.localeCompare(b.name));
 
                     // Combine the two sets of suggestions, prioritizing startsWithSearchTerm
                     const combinedSuggestions = startsWithSearchTerm.concat(includesSearchTerm);
