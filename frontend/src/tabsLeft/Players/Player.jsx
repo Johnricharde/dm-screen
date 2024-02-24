@@ -11,46 +11,20 @@ async function fetchCharacters() {
     }
 }
 
-async function createPlayerElements() {
+export async function createPlayerElements() {
     try {
         const playerArray = await fetchCharacters();
 
-        const playerElements = playerArray.map((player, index) => (
-            <div key={index}>
-                <hr />
-                <h2><span className="font-bold">Player Name: </span>{player.playerName}</h2>
-                <h2><span className="font-bold">Character Name: </span>{player.characterName}</h2>
-                <h2><span className="font-bold">Class: </span>{player.class}</h2>
-                <h2><span className="font-bold">Race: </span>{player.race}</h2>
-                <h2 className="font-bold">Notes:</h2>
-                <p>{player.notes}</p>
-                <br />
-            </div>
-        ));
-
-        return playerElements;
+        return playerArray.map((player, index) => ({
+            id: index,
+            playerName: player.playerName,
+            characterName: player.characterName,
+            class: player.class,
+            race: player.race,
+            notes: player.notes,
+        }));
     } catch (error) {
         console.error('Error in createPlayerElements(): ', error);
         throw error;
     }
-}
-
-
-
-export default function Player() {
-    const [playersHtml, setPlayersHtml] = useState('');
-
-    useEffect(() => {
-        async function fetchAndSetPlayersHtml() {
-            try {
-                const html = await createPlayerElements();
-                setPlayersHtml(html);
-            } catch (error) {
-                console.error('Error in Player(): ', error);
-            }
-        }
-        fetchAndSetPlayersHtml();
-    }, []);
-
-    return playersHtml;
 }
