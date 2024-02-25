@@ -38,6 +38,41 @@ app.get('/api/playerCharacters', async (req, res) => {
     }
 });
 
+// Route to get a specific character for a specific player
+app.get('/api/playerCharacters/:playerId/characters/:characterName', async (req, res) => {
+    const playerId = req.params.playerId;
+    const characterName = req.params.characterName;
+    try {
+        const result = await pool.query("SELECT * FROM playerCharacter WHERE playerId = ? AND characterName = ?", [playerId, characterName]);
+        if (result[0].length === 0) {
+            res.status(404).json({ error: 'Character not found' });
+        } else {
+            res.json({ message: result[0] });
+        }
+    } catch (error) {
+        console.error('Error: ', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+// Route to delete a specific character for a specific player
+app.delete('/api/playerCharacters/:playerId/characters/:characterName', async (req, res) => {
+    const playerId = req.params.playerId;
+    const characterName = req.params.characterName;
+    try {
+        const result = await pool.query("DELETE FROM playerCharacter WHERE playerId = ? AND characterName = ?", [playerId, characterName]);
+        if (result.affectedRows === 0) {
+            res.status(404).json({ error: 'Character not found' });
+        } else {
+            res.json({ success: true, message: 'Character deleted successfully' });
+        }
+    } catch (error) {
+        console.error('Error: ', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+
+
 // app.get('/api/.......................', async (req, res) => {
 //     try {
 //         const result = await pool.query("SELECT ... FROM ... WHERE ...");
