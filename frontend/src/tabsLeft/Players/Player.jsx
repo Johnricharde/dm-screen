@@ -15,8 +15,8 @@ export async function createPlayerElements() {
     try {
         const playerArray = await fetchCharacters();
 
-        return playerArray.map((player, index) => ({
-            id: index,
+        return playerArray.map(player => ({
+            playerID: player.playerID,
             playerName: player.playerName,
             characterName: player.characterName,
             class: player.class,

@@ -38,6 +38,38 @@ app.get('/api/playerCharacters', async (req, res) => {
     }
 });
 
+// Route to get a player character by ID
+app.get('/api/playerCharacters/:id', async (req, res) => {
+    const playerId = req.params.id;
+    try {
+        const result = await pool.query("SELECT * FROM playerCharacter WHERE playerID = ?", [playerId]);
+        if (result.length === 0) {
+            // If no player is found with the given ID, return 404
+            return res.status(404).json({ error: 'Player not found' });
+        }
+        res.json({ message: result[0] }); // Assuming only one player is found
+    } catch (error) {
+        console.error('Error: ', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+// Route to delete a player character by ID
+app.delete('/api/playerCharacters/:id', async (req, res) => {
+    const playerId = req.params.id;
+    try {
+        const result = await pool.query("DELETE FROM playerCharacter WHERE playerID = ?", [playerId]);
+        if (result.affectedRows === 0) {
+            // If no rows were affected, it means the player with the given ID was not found
+            return res.status(404).json({ success: false, error: 'Player not found' });
+        }
+        res.json({ success: true, message: 'Player deleted successfully' });
+    } catch (error) {
+        console.error('Error deleting player: ', error);
+        res.status(500).json({ success: false, error: 'Internal Server Error' });
+    }
+});
+
 // app.get('/api/.......................', async (req, res) => {
 //     try {
 //         const result = await pool.query("SELECT ... FROM ... WHERE ...");

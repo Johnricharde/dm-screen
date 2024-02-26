@@ -23,6 +23,23 @@ async function addPlayer(playerData) {
     }
 }
 
+async function deletePlayer(playerId) {
+    try {
+        const response = await fetch(`http://localhost:3000/api/playerCharacters/${playerId}`, {
+            method: 'DELETE',
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to delete player');
+        }
+
+        return true;
+    } catch (error) {
+        console.error('Error deleting player: ', error);
+        throw error;
+    }
+}
+
 export default function Players() {
     const [playerData, setPlayerData] = useState({
         playerName: '',
@@ -71,6 +88,17 @@ export default function Players() {
             console.error('Failed to add player: ', error);
         }
     };
+
+    const handleDelete = async (playerId) => {
+        try {
+            await deletePlayer(playerId);
+            const updatedPlayers = await createPlayerElements();
+            setPlayers(updatedPlayers);
+        } catch (error) {
+            console.error('Failed to delete player: ', error);
+        }
+    };
+
 
     return (
         <div>
@@ -140,18 +168,28 @@ export default function Players() {
             </div>
             <hr />
             <br />
-            {players.map(player => (
-                <div key={player.id}>
-                    <hr />
-                    <h2><span className="font-bold">Player Name: </span>{player.playerName}</h2>
-                    <h2><span className="font-bold">Character Name: </span>{player.characterName}</h2>
-                    <h2><span className="font-bold">Class: </span>{player.class}</h2>
-                    <h2><span className="font-bold">Race: </span>{player.race}</h2>
-                    <h2 className="font-bold">Notes:</h2>
-                    <p>{player.notes}</p>
-                    <br />
-                </div>
-            ))}
+            {players.map(player => {
+                console.log("||||||||||||||||||||||||||||||||||||||||||||||||||||||")
+                console.log('Player ID:', player.playerID);
+
+                return (
+                    <div key={player.playerID}>
+                        <hr />
+                        <h2><span className="font-bold">Player Name: </span>{player.playerName}</h2>
+                        <h2><span className="font-bold">Character Name: </span>{player.characterName}</h2>
+                        <h2><span className="font-bold">Class: </span>{player.class}</h2>
+                        <h2><span className="font-bold">Race: </span>{player.race}</h2>
+                        <h2 className="font-bold">Notes:</h2>
+                        <p>{player.notes}</p>
+                        <button
+                            className="flex-grow py-1 bg-gray-700 text-white"
+                            onClick={() => handleDelete(player.playerID)}>
+                            Delete
+                        </button>
+                        <br />
+                    </div>
+                );
+            })}
         </div>
     );
 }
