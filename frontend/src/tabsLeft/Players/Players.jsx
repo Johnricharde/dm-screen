@@ -23,22 +23,6 @@ async function addPlayer(playerData) {
     }
 }
 
-async function deletePlayer(playerId, characterName) {
-    try {
-        const response = await fetch(`http://localhost:3000/api/playerCharacters/${playerId}/${characterName}`, {
-            method: 'DELETE',
-        });
-        if (!response.ok) {
-            throw new Error('Failed to delete player');
-        }
-
-        return true;
-    } catch (error) {
-        console.error('Error deleting player: ', error);
-        throw error;
-    }
-}
-
 export default function Players() {
     const [playerData, setPlayerData] = useState({
         playerName: '',
@@ -87,20 +71,6 @@ export default function Players() {
             console.error('Failed to add player: ', error);
         }
     };
-
-    const handleDelete = async (playerId, characterName) => {
-        try {
-            await deletePlayer(playerId, characterName);
-            // Remove the deleted player from the UI by filtering the players array
-            setPlayers(players.filter(player => !(player.id === playerId && player.characterName === characterName)));
-        } catch (error) {
-            console.error('Failed to delete player: ', error);
-        }
-    };
-
-
-
-
 
     return (
         <div>
@@ -179,11 +149,6 @@ export default function Players() {
                     <h2><span className="font-bold">Race: </span>{player.race}</h2>
                     <h2 className="font-bold">Notes:</h2>
                     <p>{player.notes}</p>
-                    <button
-                        className="flex-grow py-1 bg-gray-700 text-white"
-                        onClick={() => handleDelete(player.id, player.characterName)}>
-                        Delete
-                    </button>
                     <br />
                 </div>
             ))}
