@@ -2,53 +2,47 @@
 import React, { useState, useEffect } from 'react';
 import { createPlayerElements } from './Player';
 
-async function addPlayer(playerData) {
+async function handleAPIRequest(url, options) {
     try {
-        const response = await fetch('http://localhost:3000/api/playerCharacters', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(playerData),
-        });
-
+        const response = await fetch(url, options);
         if (!response.ok) {
-            throw new Error('Failed to add player');
+            throw new Error(`Failed request: ${response.status}`);
         }
-
-        return true;
+        return await response.json();
     } catch (error) {
-        console.error('Error adding player: ', error);
+        console.error('API Request Error: ', error);
         throw error;
     }
+}
+
+async function addPlayer(playerData) {
+    const options = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(playerData),
+    };
+    return handleAPIRequest('http://localhost:3000/api/playerCharacters', options);
 }
 
 async function deletePlayer(playerId) {
-    try {
-        const response = await fetch(`http://localhost:3000/api/playerCharacters/${playerId}`, {
-            method: 'DELETE',
-        });
-
-        if (!response.ok) {
-            throw new Error('Failed to delete player');
-        }
-
-        return true;
-    } catch (error) {
-        console.error('Error deleting player: ', error);
-        throw error;
-    }
+    const options = {
+        method: 'DELETE',
+    };
+    return handleAPIRequest(`http://localhost:3000/api/playerCharacters/${playerId}`, options);
 }
 
 export default function Players() {
-    const [playerData, setPlayerData] = useState({
+    const initialPlayerData = {
         playerName: '',
         characterName: '',
         class: '',
         race: '',
         notes: '',
-    });
+    };
 
+    const [playerData, setPlayerData] = useState(initialPlayerData);
     const [players, setPlayers] = useState([]);
 
     useEffect(() => {
@@ -75,13 +69,7 @@ export default function Players() {
         e.preventDefault();
         try {
             await addPlayer(playerData);
-            setPlayerData({
-                playerName: '',
-                characterName: '',
-                class: '',
-                race: '',
-                notes: '',
-            });
+            setPlayerData(initialPlayerData);
             const updatedPlayers = await createPlayerElements();
             setPlayers(updatedPlayers);
         } catch (error) {
@@ -169,9 +157,6 @@ export default function Players() {
             <hr />
             <br />
             {players.map(player => {
-                console.log("||||||||||||||||||||||||||||||||||||||||||||||||||||||")
-                console.log('Player ID:', player.playerID);
-
                 return (
                     <div key={player.playerID}>
                         <hr />

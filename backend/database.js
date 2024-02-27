@@ -47,7 +47,7 @@ app.get('/api/playerCharacters/:id', async (req, res) => {
             // If no player is found with the given ID, return 404
             return res.status(404).json({ error: 'Player not found' });
         }
-        res.json({ message: result[0] }); // Assuming only one player is found
+        res.json({ message: result[0] });
     } catch (error) {
         console.error('Error: ', error);
         res.status(500).json({ error: 'Internal Server Error' });
@@ -69,16 +69,6 @@ app.delete('/api/playerCharacters/:id', async (req, res) => {
         res.status(500).json({ success: false, error: 'Internal Server Error' });
     }
 });
-
-// app.get('/api/.......................', async (req, res) => {
-//     try {
-//         const result = await pool.query("SELECT ... FROM ... WHERE ...");
-//         res.json({ message: result });
-//     } catch (error) {
-//         console.error('Error: ', error);
-//         res.status(500).json({ error: 'Internal Server Error' });
-//     }
-// });
 
 app.listen(port, () => {
     console.log(`Server is running at http://localhost:${port}`)
