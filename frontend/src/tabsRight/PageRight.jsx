@@ -1,6 +1,7 @@
 import Page from '../../src/Page';
-import Combat from "./Combat";
-import DungeonMap from "./DungeonMap";
+import Monsters from "./Searches/Monsters";
+import Spells from "./Searches/Spells";
+import Rules from "./Searches/Rules";
 // eslint-disable-next-line no-unused-vars
 import React, { useState } from "react";
 
@@ -12,15 +13,14 @@ export default function PageRight() {
     return (
         <Page>
             <nav className="my-1 flex flex-wrap">
-                <button className="flex-grow py-1 m-1 bg-gray-700 text-white" onClick={() => setActiveComponent("Combat")}>
-                    COMBAT
-                </button>
-                <button className="flex-grow py-1 m-1 bg-gray-700 text-white" onClick={() => setActiveComponent("DungeonMap")}>
-                    DUNGEON MAP
-                </button>
+                <button className="flex-grow py-1 m-1 bg-gray-700 text-white" onClick={() => setActiveComponent("Monsters")}>MONSTERS</button>
+                <button className="flex-grow py-1 m-1 bg-gray-700 text-white" onClick={() => setActiveComponent("Spells")}>SPELLS</button>
+                <button className="flex-grow py-1 m-1 bg-gray-700 text-white" onClick={() => setActiveComponent("Rules")}>RULES</button>
             </nav>
             <hr />
-            {activeComponent === "DungeonMap" ? <DungeonMap /> : <Combat />}
+            {activeComponent === 'Monsters' && <Monsters />}
+            {activeComponent === 'Spells' && <Spells />}
+            {activeComponent === 'Rules' && <Rules />}
             <hr />
         </Page>
     );
