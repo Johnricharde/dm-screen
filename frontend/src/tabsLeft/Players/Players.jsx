@@ -155,23 +155,21 @@ export default function Players() {
                 </form>
             </div>
             <hr />
-            <br />
             {players.map(player => {
                 return (
-                    <div key={player.playerID}>
-                        <hr />
+                    <div key={player.playerID} className='m-1 px-1 bg-slate-300 rounded-md'>
                         <h2><span className="font-bold">Player Name: </span>{player.playerName}</h2>
                         <h2><span className="font-bold">Character Name: </span>{player.characterName}</h2>
                         <h2><span className="font-bold">Class: </span>{player.class}</h2>
                         <h2><span className="font-bold">Race: </span>{player.race}</h2>
                         <h2 className="font-bold">Notes:</h2>
-                        <p>{player.notes}</p>
+                        <p className='text-wrap max-w-90'>{player.notes}</p>
+                        <hr></hr>
                         <button
-                            className="flex-grow py-1 bg-gray-700 text-white"
+                            className="my-1 flex-grow py-1 bg-gray-700 text-white"
                             onClick={() => handleDelete(player.playerID)}>
                             Delete
                         </button>
-                        <br />
                     </div>
                 );
             })}

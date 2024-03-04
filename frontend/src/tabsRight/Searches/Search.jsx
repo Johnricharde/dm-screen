@@ -85,7 +85,6 @@ const Search = ({ apiEndpoint, fetchSelectedEntity }) => {
                     ))}
                 </div>
             )}
-            <hr />
         </div>
     );
 };
