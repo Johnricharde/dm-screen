@@ -68,6 +68,18 @@ export default function Players() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
+            // Check input lengths
+            if (
+                playerData.playerName.length > 50 ||
+                playerData.characterName.length > 50 ||
+                playerData.class.length > 50 ||
+                playerData.race.length > 50 ||
+                playerData.notes.length > 255
+            ) {
+                alert("Maximum characters allowed for each input is 50 and 255 for notes!");
+                return;
+            }
+
             await addPlayer(playerData);
             setPlayerData(initialPlayerData);
             const updatedPlayers = await createPlayerElements();
