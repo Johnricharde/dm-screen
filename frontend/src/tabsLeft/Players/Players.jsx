@@ -106,9 +106,9 @@ export default function Players() {
                 <form onSubmit={handleSubmit}>
                     <div className="mr-1 flex flex-col">
                         <div className="flex">
-                            <h2 className="m-2 font-bold w-24">Player: </h2>
+                            <h2 className="m-2 mr-0 font-bold w-20">Player: </h2>
                             <input
-                                className="p-1 m-1 flex-grow rounded-sm"
+                                className="p-1 m-1 flex-grow rounded-sm w-24"
                                 type="text"
                                 placeholder="Player's name..."
                                 name="playerName"
@@ -117,9 +117,9 @@ export default function Players() {
                             />
                         </div>
                         <div className="flex">
-                            <h2 className="m-2 font-bold w-24">Character: </h2>
+                            <h2 className="m-2 mr-0 font-bold w-20">Character: </h2>
                             <input
-                                className="p-1 m-1 flex-grow rounded-sm"
+                                className="p-1 m-1 flex-grow rounded-sm w-24"
                                 type="text"
                                 placeholder="Character's name..."
                                 name="characterName"
@@ -128,9 +128,9 @@ export default function Players() {
                             />
                         </div>
                         <div className="flex">
-                            <h2 className="m-2 font-bold w-24">Class: </h2>
+                            <h2 className="m-2 mr-0 font-bold w-20">Class: </h2>
                             <input
-                                className="p-1 m-1 flex-grow rounded-sm"
+                                className="p-1 m-1 flex-grow rounded-sm w-24"
                                 type="text"
                                 placeholder="Character's class..."
                                 name="class"
@@ -139,9 +139,9 @@ export default function Players() {
                             />
                         </div>
                         <div className="flex">
-                            <h2 className="m-2 font-bold w-24">Race: </h2>
+                            <h2 className="m-2 mr-0 font-bold w-20">Race: </h2>
                             <input
-                                className="p-1 m-1 flex-grow rounded-sm"
+                                className="p-1 m-1 flex-grow rounded-sm w-24"
                                 type="text"
                                 placeholder="Character's race..."
                                 name="race"
@@ -150,7 +150,7 @@ export default function Players() {
                             />
                         </div>
                         <div className="flex">
-                            <h2 className="m-2 font-bold w-24">Notes: </h2>
+                            <h2 className="m-2 mr-0 font-bold w-20">Notes: </h2>
                             <textarea
                                 className="p-1 m-1 flex-grow rounded-sm"
                                 type="textarea"
@@ -167,24 +167,26 @@ export default function Players() {
                 </form>
             </div>
             <hr />
-            {players.map(player => {
-                return (
-                    <div key={player.playerID} className='m-1 px-1 bg-slate-300 rounded-md'>
-                        <h2><span className="font-bold">Player Name: </span>{player.playerName}</h2>
-                        <h2><span className="font-bold">Character Name: </span>{player.characterName}</h2>
-                        <h2><span className="font-bold">Class: </span>{player.class}</h2>
-                        <h2><span className="font-bold">Race: </span>{player.race}</h2>
-                        <h2 className="font-bold">Notes:</h2>
-                        <p className='text-wrap max-w-90'>{player.notes}</p>
-                        <hr></hr>
-                        <button
-                            className="my-1 flex-grow py-1 bg-gray-700 text-white"
-                            onClick={() => handleDelete(player.playerID)}>
-                            Delete
-                        </button>
-                    </div>
-                );
-            })}
+            <div className='grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 mr-1'>
+                {players.map(player => {
+                    return (
+                        <div key={player.playerID} className='m-1 px-1 bg-slate-300 rounded-md'>
+                            <h2><span className="font-bold">Player: </span>{player.playerName}</h2>
+                            <h2><span className="font-bold">Character: </span>{player.characterName}</h2>
+                            <h2><span className="font-bold">Class: </span>{player.class}</h2>
+                            <h2><span className="font-bold">Race: </span>{player.race}</h2>
+                            <h2 className="font-bold">Notes:</h2>
+                            <p className='text-wrap max-w-90'>{player.notes}</p>
+                            <hr></hr>
+                            <button
+                                className="my-1 flex-grow py-1 bg-gray-700 text-white"
+                                onClick={() => handleDelete(player.playerID)}>
+                                Delete
+                            </button>
+                        </div>
+                    );
+                })}
+            </div>
         </div>
     );
 }

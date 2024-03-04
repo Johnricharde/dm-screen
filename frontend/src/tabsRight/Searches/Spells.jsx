@@ -28,8 +28,10 @@ const Spells = () => {
             {/* Display the filtered spell */}
             {selectedSpell && (
                 <>
-                    <h1 className="text-2xl font-bold">{selectedSpell.name}</h1>
-                    <h2 className="italic">{formatSpellLevel(selectedSpell.level)} {selectedSpell.school.name}</h2>
+                    <div className="bg-slate-300 px-2 pb-1 mt-2 rounded-md">
+                        <h1 className="text-2xl font-bold">{selectedSpell.name}</h1>
+                        <h2 className="italic">{formatSpellLevel(selectedSpell.level)} {selectedSpell.school.name}</h2>
+                    </div>
                     <h2><span className="font-bold">Casting Time: </span>{selectedSpell.casting_time}</h2>
                     <h2><span className="font-bold">Range: </span>{selectedSpell.range}</h2>
                     <h2><span className="font-bold">Components: </span>{selectedSpell.components.join(', ')}</h2>
@@ -40,8 +42,10 @@ const Spells = () => {
                         selectedSpell.higher_level != 0 && (
                             <h2>
                                 <br />
-                                <span className="font-bold">At Higher Levels. </span>
-                                {selectedSpell.higher_level}
+                                <div className="bg-slate-300 px-2 pb-1 mt-2 rounded-md">
+                                    <span className="font-bold">At Higher Levels. </span>
+                                    {selectedSpell.higher_level}
+                                </div>
                             </h2>
                         )}
                     <br />

@@ -29,48 +29,48 @@ const Monsters = () => {
             {selectedMonster && (
                 <>
                     {/* Monster details */}
-                    <h1 className="text-2xl font-bold">{selectedMonster.name}</h1>
-                    <h2 className="italic">
-                        {selectedMonster.size + ' '}
-                        {selectedMonster.type}
-                        {selectedMonster.subtype ? ' (' + selectedMonster.subtype + ')' : null},
-                        {' ' + selectedMonster.alignment}
-                    </h2>
+                    <div className="bg-slate-300 px-2 pb-1 mt-2 rounded-md">
+                        <h1 className="text-2xl font-bold">{selectedMonster.name}</h1>
+                        <h2 className="italic">
+                            {selectedMonster.size + ' '}
+                            {selectedMonster.type}
+                            {selectedMonster.subtype ? ' (' + selectedMonster.subtype + ')' : null},
+                            {' ' + selectedMonster.alignment}
+                        </h2>
+                    </div>
 
-                    <hr />
                     <h2><span className="font-bold">Armor Class </span>{selectedMonster.armor_class[0].value}</h2>
                     <h2><span className="font-bold">Hit Points </span>{selectedMonster.hit_points} ({selectedMonster.hit_dice})</h2>
                     <h2><span className="font-bold">Speed </span>{selectedMonster.speed.walk}</h2>
                     <h2><span className="font-bold">Initiative </span>{calculateModifier(selectedMonster.dexterity)}</h2>
-                    <hr />
-                    <h2 className="font-bold flex justify-around"></h2>
-                    <h3 className="flex flex-wrap pb-2">
-                        <div className="px-3">
-                            <div className="font-bold flex justify-center">STR</div>
-                            <div className="text-nowrap">{selectedMonster.strength} ({calculateModifier(selectedMonster.strength)})</div>
-                        </div>
-                        <div className="px-3">
-                            <div className="font-bold flex justify-center">DEX</div>
-                            <div className="text-nowrap">{selectedMonster.dexterity} ({calculateModifier(selectedMonster.dexterity)})</div>
-                        </div>
-                        <div className="px-3">
-                            <div className="font-bold flex justify-center">CON</div>
-                            <div className="text-nowrap">{selectedMonster.constitution} ({calculateModifier(selectedMonster.constitution)})</div>
-                        </div>
-                        <div className="px-3">
-                            <div className="font-bold flex justify-center">INT</div>
-                            <div className="text-nowrap">{selectedMonster.intelligence} ({calculateModifier(selectedMonster.intelligence)})</div>
-                        </div>
-                        <div className="px-3">
-                            <div className="font-bold flex justify-center">WIS</div>
-                            <div className="text-nowrap">{selectedMonster.wisdom} ({calculateModifier(selectedMonster.wisdom)})</div>
-                        </div>
-                        <div className="px-3">
-                            <div className="font-bold flex justify-center">CHA</div>
-                            <div className="text-nowrap">{selectedMonster.charisma} ({calculateModifier(selectedMonster.charisma)})</div>
-                        </div>
-                    </h3>
-                    <hr />
+                    <h2 className="font-bold flex justify-space">
+                        <h3 className="p-2 grid gap-1 grid-cols-2 sm:grid-cols-3 lg:grid-cols-6">
+                            <div className="px-3 py-1 rounded-lg bg-slate-200">
+                                <div className="font-bold flex justify-center">STR</div>
+                                <div className="text-nowrap">{selectedMonster.strength} ({calculateModifier(selectedMonster.strength)})</div>
+                            </div>
+                            <div className="px-3 py-1 rounded-lg bg-slate-200">
+                                <div className="font-bold flex justify-center">DEX</div>
+                                <div className="text-nowrap">{selectedMonster.dexterity} ({calculateModifier(selectedMonster.dexterity)})</div>
+                            </div>
+                            <div className="px-3 py-1 rounded-lg bg-slate-200">
+                                <div className="font-bold flex justify-center">CON</div>
+                                <div className="text-nowrap">{selectedMonster.constitution} ({calculateModifier(selectedMonster.constitution)})</div>
+                            </div>
+                            <div className="px-3 py-1 rounded-lg bg-slate-200">
+                                <div className="font-bold flex justify-center">INT</div>
+                                <div className="text-nowrap">{selectedMonster.intelligence} ({calculateModifier(selectedMonster.intelligence)})</div>
+                            </div>
+                            <div className="px-3 py-1 rounded-lg bg-slate-200">
+                                <div className="font-bold flex justify-center">WIS</div>
+                                <div className="text-nowrap">{selectedMonster.wisdom} ({calculateModifier(selectedMonster.wisdom)})</div>
+                            </div>
+                            <div className="px-3 py-1 rounded-lg bg-slate-200">
+                                <div className="font-bold flex justify-center">CHA</div>
+                                <div className="text-nowrap">{selectedMonster.charisma} ({calculateModifier(selectedMonster.charisma)})</div>
+                            </div>
+                        </h3>
+                    </h2>
                     <h2><span className="font-bold">Senses </span>
                         Darkvision {selectedMonster.senses.darkvision},
                         Passive Perception {selectedMonster.senses.passive_perception}
@@ -88,12 +88,9 @@ const Monsters = () => {
                     </h2>
                     <br />
 
-                    <hr />
                     {getObjects(selectedMonster.special_abilities)}
-                    <h1 className="text-2xl font-bold">Actions</h1>
-                    <hr />
+                    <h1 className="text-2xl font-bold bg-slate-300 px-2 pb-1 rounded-md">Actions</h1>
                     {getObjects(selectedMonster.actions)}
-                    <hr />
                 </>
             )}
         </div>
