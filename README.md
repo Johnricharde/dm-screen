@@ -1,6 +1,5 @@
 # Digital DM-Screen
 
-
 This project is a web-app with the purpose of helping the game master of a D&D campaign keep track of information.
 It is similiar in use to the physical version called a "DM Screen" or "GM Screen".
 
@@ -9,14 +8,11 @@ If you've ever been the DM of a group playing D&D then you know that it can be q
 This is what this project is going to try to remedy.
 
 For those who are already familiar with D&D, here are some of the things that this app might be able to help with:
+- Keep track of personalized "Cards" with basic information about:
+1. Player Characters
+2. Non-Player Characters
+3. Quests
 - Easy Search access to information contained within the D&D 5E rulebook, spellbook or bestiary.
-- Keep track of basic information about each player:
-  1. The player's name
-  2. The character's name, class and race.
-  3. Personal notes
-
-  Other functionality might be added as the project grows.
-
 
 ### Tech:
 - React.js
@@ -26,7 +22,6 @@ For those who are already familiar with D&D, here are some of the things that th
 - VS Code
 - MySql
 
-### Other:
 ### Acknowledgements:
 - Original Concept idea came from Stian Sundby at GET Academy
 - This app uses the D&D API from "https://www.dnd5eapi.co".
