@@ -10,7 +10,10 @@ This is what this project is going to try to remedy.
 
 For those who are already familiar with D&D, here are some of the things that this app might be able to help with:
 - Easy Search access to information contained within the D&D 5E rulebook, spellbook or bestiary.
-- Keep your own personal notes within the web-app.
+- Keep track of basic information about each player:
+  1. The player's name
+  2. The character's name, class and race.
+  3. Personal notes
 
   Other functionality might be added as the project grows.
 
@@ -21,6 +24,7 @@ For those who are already familiar with D&D, here are some of the things that th
 - Axios
 - Tailwind CSS
 - VS Code
+- MySql
 
 ### Other:
 ### Acknowledgements:
@@ -28,7 +32,7 @@ For those who are already familiar with D&D, here are some of the things that th
 - This app uses the D&D API from "https://www.dnd5eapi.co".
   
 ### Lessons learned:
-Familiarized myself with React.js, APIs, Vite and Tailwind CSS.
+Familiarized myself with React.js, APIs, Vite, Tailwind CSS and MySql.
 
 
 
