@@ -21,7 +21,6 @@ export default function PageRight() {
             {activeComponent === 'Monsters' && <Monsters />}
             {activeComponent === 'Spells' && <Spells />}
             {activeComponent === 'Rules' && <Rules />}
-            <hr />
         </Page>
     );
 }

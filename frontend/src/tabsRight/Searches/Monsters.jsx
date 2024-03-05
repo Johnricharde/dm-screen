@@ -46,31 +46,55 @@ const Monsters = () => {
                     <h2 className="font-bold flex justify-space">
                         <h3 className="p-2 grid gap-1 grid-cols-2 sm:grid-cols-3 lg:grid-cols-6">
                             <div className="px-3 py-1 rounded-lg bg-slate-200">
-                                <div className="font-bold flex justify-center">STR</div>
-                                <div className="text-nowrap">{selectedMonster.strength} ({calculateModifier(selectedMonster.strength)})</div>
+                                <div className="text-slate-500 font-bold flex justify-center">STR</div>
+                                <div className="flex justify-center text-nowrap ">
+                                    {selectedMonster.strength} (<span className={calculateModifier(selectedMonster.strength) < 0 ? 'text-red-600' : 'text-emerald-600'}>
+                                        {calculateModifier(selectedMonster.strength)}
+                                    </span>)
+                                </div>
                             </div>
                             <div className="px-3 py-1 rounded-lg bg-slate-200">
-                                <div className="font-bold flex justify-center">DEX</div>
-                                <div className="text-nowrap">{selectedMonster.dexterity} ({calculateModifier(selectedMonster.dexterity)})</div>
+                                <div className="text-slate-500 font-bold flex justify-center">DEX</div>
+                                <div className="flex justify-center text-nowrap">
+                                    {selectedMonster.dexterity} (<span className={calculateModifier(selectedMonster.dexterity) < 0 ? 'text-red-600' : 'text-emerald-600'}>
+                                        {calculateModifier(selectedMonster.dexterity)}
+                                    </span>)
+                                </div>
                             </div>
                             <div className="px-3 py-1 rounded-lg bg-slate-200">
-                                <div className="font-bold flex justify-center">CON</div>
-                                <div className="text-nowrap">{selectedMonster.constitution} ({calculateModifier(selectedMonster.constitution)})</div>
+                                <div className="text-slate-500 font-bold flex justify-center">CON</div>
+                                <div className="flex justify-center text-nowrap">
+                                    {selectedMonster.constitution} (<span className={calculateModifier(selectedMonster.constitution) < 0 ? 'text-red-600' : 'text-emerald-600'}>
+                                        {calculateModifier(selectedMonster.constitution)}
+                                    </span>)
+                                </div>
                             </div>
                             <div className="px-3 py-1 rounded-lg bg-slate-200">
-                                <div className="font-bold flex justify-center">INT</div>
-                                <div className="text-nowrap">{selectedMonster.intelligence} ({calculateModifier(selectedMonster.intelligence)})</div>
+                                <div className="text-slate-500 font-bold flex justify-center">INT</div>
+                                <div className="flex justify-center text-nowrap">
+                                    {selectedMonster.intelligence} (<span className={calculateModifier(selectedMonster.intelligence) < 0 ? 'text-red-600' : 'text-emerald-600'}>
+                                        {calculateModifier(selectedMonster.intelligence)}
+                                    </span>)
+                                </div>
                             </div>
                             <div className="px-3 py-1 rounded-lg bg-slate-200">
-                                <div className="font-bold flex justify-center">WIS</div>
-                                <div className="text-nowrap">{selectedMonster.wisdom} ({calculateModifier(selectedMonster.wisdom)})</div>
+                                <div className="text-slate-500 font-bold flex justify-center">WIS</div>
+                                <div className="flex justify-center text-nowrap">
+                                    {selectedMonster.wisdom} (<span className={calculateModifier(selectedMonster.wisdom) < 0 ? 'text-red-600' : 'text-emerald-600'}>
+                                        {calculateModifier(selectedMonster.wisdom)}
+                                    </span>)
+                                </div>
                             </div>
                             <div className="px-3 py-1 rounded-lg bg-slate-200">
-                                <div className="font-bold flex justify-center">CHA</div>
-                                <div className="text-nowrap">{selectedMonster.charisma} ({calculateModifier(selectedMonster.charisma)})</div>
+                                <div className="text-slate-500 font-bold flex justify-center">CHA</div>
+                                <div className="flex justify-center text-nowrap">
+                                    {selectedMonster.charisma} (<span className={calculateModifier(selectedMonster.charisma) < 0 ? 'text-red-600' : 'text-emerald-600'}>
+                                        {calculateModifier(selectedMonster.charisma)}
+                                    </span>)
+                                </div>
                             </div>
                         </h3>
-                    </h2>
+                    </h2 >
                     <h2><span className="font-bold">Senses </span>
                         Darkvision {selectedMonster.senses.darkvision},
                         Passive Perception {selectedMonster.senses.passive_perception}
@@ -93,7 +117,7 @@ const Monsters = () => {
                     {getObjects(selectedMonster.actions)}
                 </>
             )}
-        </div>
+        </div >
     );
 };
 

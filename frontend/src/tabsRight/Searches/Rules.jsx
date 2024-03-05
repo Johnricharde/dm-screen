@@ -32,7 +32,6 @@ export default function Rules() {
                     <h1 className="text-2xl font-bold">{selectedRule.name}</h1>
                     <ReactMarkdown remarkPlugins={[remarkGfm]}>{selectedRule.desc}</ReactMarkdown>
                     <br />
-                    <hr />
                 </>
             )}
         </div>

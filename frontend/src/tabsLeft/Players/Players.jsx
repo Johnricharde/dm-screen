@@ -108,7 +108,7 @@ export default function Players() {
                         <div className="flex">
                             <h2 className="m-2 mr-0 font-bold w-20">Player: </h2>
                             <input
-                                className="p-1 m-1 flex-grow rounded-sm w-24"
+                                className="border p-1 m-1 flex-grow rounded-sm w-24"
                                 type="text"
                                 placeholder="Player's name..."
                                 name="playerName"
@@ -119,7 +119,7 @@ export default function Players() {
                         <div className="flex">
                             <h2 className="m-2 mr-0 font-bold w-20">Character: </h2>
                             <input
-                                className="p-1 m-1 flex-grow rounded-sm w-24"
+                                className="border p-1 m-1 flex-grow rounded-sm w-24"
                                 type="text"
                                 placeholder="Character's name..."
                                 name="characterName"
@@ -130,7 +130,7 @@ export default function Players() {
                         <div className="flex">
                             <h2 className="m-2 mr-0 font-bold w-20">Class: </h2>
                             <input
-                                className="p-1 m-1 flex-grow rounded-sm w-24"
+                                className="border p-1 m-1 flex-grow rounded-sm w-24"
                                 type="text"
                                 placeholder="Character's class..."
                                 name="class"
@@ -141,7 +141,7 @@ export default function Players() {
                         <div className="flex">
                             <h2 className="m-2 mr-0 font-bold w-20">Race: </h2>
                             <input
-                                className="p-1 m-1 flex-grow rounded-sm w-24"
+                                className="border p-1 m-1 flex-grow rounded-sm w-24"
                                 type="text"
                                 placeholder="Character's race..."
                                 name="race"
@@ -152,7 +152,7 @@ export default function Players() {
                         <div className="flex">
                             <h2 className="m-2 mr-0 font-bold w-20">Notes: </h2>
                             <textarea
-                                className="p-1 m-1 flex-grow rounded-sm"
+                                className="border p-1 m-1 flex-grow rounded-sm"
                                 type="textarea"
                                 placeholder="Notes..."
                                 name="notes"
@@ -166,7 +166,6 @@ export default function Players() {
                     </div>
                 </form>
             </div>
-            <hr />
             <div className='grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 mr-1'>
                 {players.map(player => {
                     return (

@@ -63,7 +63,7 @@ const Search = ({ apiEndpoint, fetchSelectedEntity }) => {
         <div>
             {/* Search bar with autocomplete */}
             <input
-                className="border-s border-e pl-2 w-1/2 p-1"
+                className="border pl-2 w-1/2 p-1 m-1 mx-2"
                 type="text"
                 placeholder="Search..."
                 value={searchTerm}
@@ -73,7 +73,7 @@ const Search = ({ apiEndpoint, fetchSelectedEntity }) => {
             />
             {/* Dropdown for autocomplete suggestions */}
             {suggestions.length > 0 && (
-                <div className="dropdown">
+                <div className="dropdown ml-3">
                     {suggestions.map((entity, index) => (
                         <div
                             key={index}

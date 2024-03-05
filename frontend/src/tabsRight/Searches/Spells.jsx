@@ -49,7 +49,6 @@ const Spells = () => {
                             </h2>
                         )}
                     <br />
-                    <hr />
                 </>
             )}
         </div>
