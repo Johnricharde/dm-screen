@@ -108,7 +108,7 @@ export default function Players() {
                         <div className="flex">
                             <h2 className="m-2 mr-0 font-bold w-20">Player: </h2>
                             <input
-                                className="border p-1 m-1 flex-grow rounded-sm w-24"
+                                className="text-white placeholder-gray-200 bg-black bg-opacity-50 p-1 m-1 flex-grow rounded-sm w-24"
                                 type="text"
                                 placeholder="Player's name..."
                                 name="playerName"
@@ -119,7 +119,7 @@ export default function Players() {
                         <div className="flex">
                             <h2 className="m-2 mr-0 font-bold w-20">Character: </h2>
                             <input
-                                className="border p-1 m-1 flex-grow rounded-sm w-24"
+                                className="placeholder-gray-200 bg-black bg-opacity-50 p-1 m-1 flex-grow rounded-sm w-24"
                                 type="text"
                                 placeholder="Character's name..."
                                 name="characterName"
@@ -130,7 +130,7 @@ export default function Players() {
                         <div className="flex">
                             <h2 className="m-2 mr-0 font-bold w-20">Class: </h2>
                             <input
-                                className="border p-1 m-1 flex-grow rounded-sm w-24"
+                                className="placeholder-gray-200 bg-black bg-opacity-50 p-1 m-1 flex-grow rounded-sm w-24"
                                 type="text"
                                 placeholder="Character's class..."
                                 name="class"
@@ -141,7 +141,7 @@ export default function Players() {
                         <div className="flex">
                             <h2 className="m-2 mr-0 font-bold w-20">Race: </h2>
                             <input
-                                className="border p-1 m-1 flex-grow rounded-sm w-24"
+                                className="placeholder-gray-200 bg-black bg-opacity-50 p-1 m-1 flex-grow rounded-sm w-24"
                                 type="text"
                                 placeholder="Character's race..."
                                 name="race"
@@ -152,7 +152,7 @@ export default function Players() {
                         <div className="flex">
                             <h2 className="m-2 mr-0 font-bold w-20">Notes: </h2>
                             <textarea
-                                className="border p-1 m-1 flex-grow rounded-sm"
+                                className="placeholder-gray-200 bg-black bg-opacity-50 p-1 m-1 flex-grow rounded-sm"
                                 type="textarea"
                                 placeholder="Notes..."
                                 name="notes"
@@ -160,7 +160,7 @@ export default function Players() {
                                 onChange={handleChange}
                             />
                         </div>
-                        <button type="submit" className="flex-grow py-1 m-1 bg-gray-700 text-white">
+                        <button type="submit" className="flex-grow py-1 m-1 bg-red-800 text-white">
                             Add Player
                         </button>
                     </div>
@@ -169,7 +169,7 @@ export default function Players() {
             <div className='grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 mr-1'>
                 {players.map(player => {
                     return (
-                        <div key={player.playerID} className='m-1 px-1 bg-slate-300 rounded-md'>
+                        <div key={player.playerID} className='text-gray-100 bg-black bg-opacity-50 m-1 px-1 rounded-md'>
                             <h2><span className="font-bold">Player: </span>{player.playerName}</h2>
                             <h2><span className="font-bold">Character: </span>{player.characterName}</h2>
                             <h2><span className="font-bold">Class: </span>{player.class}</h2>
@@ -178,7 +178,7 @@ export default function Players() {
                             <p className='text-wrap max-w-90'>{player.notes}</p>
                             <hr></hr>
                             <button
-                                className="my-1 flex-grow py-1 bg-gray-700 text-white"
+                                className="my-1 flex-grow py-1 bg-red-800 text-white"
                                 onClick={() => handleDelete(player.playerID)}>
                                 Delete
                             </button>

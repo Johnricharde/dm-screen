@@ -12,9 +12,9 @@ export default function PageLeft() {
     return (
         <Page>
             <nav className="my-1 flex flex-wrap">
-                <button className="flex-grow py-1 m-1 bg-gray-700 text-white" onClick={() => setActiveComponent("Players")}>PLAYERS</button>
-                <button className="flex-grow py-1 m-1 bg-gray-700 text-white" onClick={() => setActiveComponent("Notes")}>NOTES</button>
-                <button className="flex-grow py-1 m-1 bg-gray-700 text-white" onClick={() => setActiveComponent("Npcs")}>NPC</button>
+                <button className="flex-grow py-1 m-1 bg-red-800 text-white" onClick={() => setActiveComponent("Players")}>PLAYERS</button>
+                <button className="flex-grow py-1 m-1 bg-red-800 text-white" onClick={() => setActiveComponent("Notes")}>NOTES</button>
+                <button className="flex-grow py-1 m-1 bg-red-800 text-white" onClick={() => setActiveComponent("Npcs")}>NPC</button>
             </nav>
             <hr />
             {activeComponent === 'Players' && <Players />}

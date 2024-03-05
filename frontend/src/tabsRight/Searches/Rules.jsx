@@ -20,7 +20,7 @@ export default function Rules() {
 
 
     return (
-        <div>
+        <div className="mx-2">
             {/* Search bar with autocomplete */}
             <Search
                 apiEndpoint="https://www.dnd5eapi.co/api/rule-sections"

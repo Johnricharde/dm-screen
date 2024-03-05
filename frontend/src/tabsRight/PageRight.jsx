@@ -8,14 +8,14 @@ import React, { useState } from "react";
 
 export default function PageRight() {
     // Use state to keep track of the active component
-    const [activeComponent, setActiveComponent] = useState("DungeonMap");
+    const [activeComponent, setActiveComponent] = useState("Monsters");
 
     return (
         <Page>
             <nav className="my-1 flex flex-wrap">
-                <button className="flex-grow py-1 m-1 bg-gray-700 text-white" onClick={() => setActiveComponent("Monsters")}>MONSTERS</button>
-                <button className="flex-grow py-1 m-1 bg-gray-700 text-white" onClick={() => setActiveComponent("Spells")}>SPELLS</button>
-                <button className="flex-grow py-1 m-1 bg-gray-700 text-white" onClick={() => setActiveComponent("Rules")}>RULES</button>
+                <button className="flex-grow py-1 m-1 bg-red-800 text-white" onClick={() => setActiveComponent("Monsters")}>MONSTERS</button>
+                <button className="flex-grow py-1 m-1 bg-red-800 text-white" onClick={() => setActiveComponent("Spells")}>SPELLS</button>
+                <button className="flex-grow py-1 m-1 bg-red-800 text-white" onClick={() => setActiveComponent("Rules")}>RULES</button>
             </nav>
             <hr />
             {activeComponent === 'Monsters' && <Monsters />}

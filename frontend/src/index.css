@@ -49,13 +49,12 @@ button {
 }
 
 button:hover {
-  background: #4e5e66;
+  background-color: rgb(185 28 28);
 }
 
 button:focus,
 button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-  background: #4e5e66;
+  background-color: rgb(185 28 28);
 }
 
 @media (prefers-color-scheme: light) {

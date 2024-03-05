@@ -19,7 +19,7 @@ const Spells = () => {
     const formatSpellLevel = (level) => (level === 0 ? "Cantrip" : `${level}${[undefined, "st", "nd", "rd"][(level % 100 - 20) % 10] || "th"} level`);
 
     return (
-        <div>
+        <div className="mx-2">
             {/* Search bar with autocomplete */}
             <Search
                 apiEndpoint="https://www.dnd5eapi.co/api/spells"
@@ -28,7 +28,7 @@ const Spells = () => {
             {/* Display the filtered spell */}
             {selectedSpell && (
                 <>
-                    <div className="bg-slate-300 px-2 pb-1 mt-2 rounded-md">
+                    <div className="text-gray-100 bg-black bg-opacity-50 px-2 pb-1 mt-2 rounded-md">
                         <h1 className="text-2xl font-bold">{selectedSpell.name}</h1>
                         <h2 className="italic">{formatSpellLevel(selectedSpell.level)} {selectedSpell.school.name}</h2>
                     </div>
@@ -42,8 +42,8 @@ const Spells = () => {
                         selectedSpell.higher_level != 0 && (
                             <h2>
                                 <br />
-                                <div className="bg-slate-300 px-2 pb-1 mt-2 rounded-md">
-                                    <span className="font-bold">At Higher Levels. </span>
+                                <div className="text-gray-100 bg-black bg-opacity-50 px-2 pb-1 mt-2 rounded-md">
+                                    <span className="font-bold">At Higher Levels. </span><br />
                                     {selectedSpell.higher_level}
                                 </div>
                             </h2>
