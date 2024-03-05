@@ -24,6 +24,7 @@ For those who are already familiar with D&D, here are some of the things that th
 - Axios
 - Tailwind CSS
 - VS Code
+- MySql
 
 ### Other:
 ### Acknowledgements:
@@ -31,7 +32,7 @@ For those who are already familiar with D&D, here are some of the things that th
 - This app uses the D&D API from "https://www.dnd5eapi.co".
   
 ### Lessons learned:
-Familiarized myself with React.js, APIs, Vite and Tailwind CSS.
+Familiarized myself with React.js, APIs, Vite, Tailwind CSS and MySql.
 
 
 
