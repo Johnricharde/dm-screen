@@ -15,6 +15,12 @@ const pool = mysql.createPool({
     database: 'dm_screen_db'
 }).promise()
 
+
+
+
+
+
+// FOR THE "Players.jsx"
 // Route to add a new player
 app.post('/api/playerCharacters', async (req, res) => {
     const { playerName, characterName, class: playerClass, race, notes } = req.body;
