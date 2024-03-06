@@ -55,6 +55,7 @@ export default function Players() {
 
     const [playerData, setPlayerData] = useState(initialPlayerData);
     const [players, setPlayers] = useState([]);
+    const [showForm, setShowForm] = useState(false);
 
     useEffect(() => {
         async function fetchAndSetPlayers() {
@@ -100,6 +101,7 @@ export default function Players() {
             setPlayerData(initialPlayerData);
             const updatedPlayers = await createPlayerElements();
             setPlayers(updatedPlayers);
+            setShowForm(false);
         } catch (error) {
             console.error('Failed to add/edit player: ', error);
         }
@@ -126,74 +128,86 @@ export default function Players() {
         }
     };
 
+    const handleNewPlayerClick = () => {
+        setShowForm(!showForm);
+    };
 
     return (
         <div>
-            <div>
-                <form onSubmit={handleSubmit}>
-                    <div className="mr-1 flex flex-col">
-                        <div className="flex">
-                            <h2 className="m-2 mr-0 font-bold w-20">Player: </h2>
-                            <input
-                                className="text-white placeholder-gray-200 bg-black bg-opacity-50 p-1 m-1 flex-grow rounded-sm w-24"
-                                type="text"
-                                placeholder="Player's name..."
-                                name="playerName"
-                                value={playerData.playerName}
-                                onChange={handleChange}
-                            />
-                        </div>
-                        <div className="flex">
-                            <h2 className="m-2 mr-0 font-bold w-20">Character: </h2>
-                            <input
-                                className="text-white placeholder-gray-200 bg-black bg-opacity-50 p-1 m-1 flex-grow rounded-sm w-24"
-                                type="text"
-                                placeholder="Name..."
-                                name="characterName"
-                                value={playerData.characterName}
-                                onChange={handleChange}
-                            />
-                        </div>
-                        <div className="flex">
-                            <h2 className="m-2 mr-0 font-bold w-20">Class: </h2>
-                            <input
-                                className="text-white placeholder-gray-200 bg-black bg-opacity-50 p-1 m-1 flex-grow rounded-sm w-24"
-                                type="text"
-                                placeholder="Class..."
-                                name="class"
-                                value={playerData.class}
-                                onChange={handleChange}
-                            />
-                        </div>
-                        <div className="flex">
-                            <h2 className="m-2 mr-0 font-bold w-20">Race: </h2>
-                            <input
-                                className="text-white placeholder-gray-200 bg-black bg-opacity-50 p-1 m-1 flex-grow rounded-sm w-24"
-                                type="text"
-                                placeholder="Race..."
-                                name="race"
-                                value={playerData.race}
-                                onChange={handleChange}
-                            />
-                        </div>
-                        <div className="flex">
-                            <h2 className="m-2 mr-0 font-bold w-20">Notes: </h2>
-                            <textarea
-                                className="text-white placeholder-gray-200 bg-black bg-opacity-50 p-1 m-1 flex-grow rounded-sm"
-                                type="textarea"
-                                placeholder="Notes..."
-                                name="notes"
-                                value={playerData.notes}
-                                onChange={handleChange}
-                            />
-                        </div>
-                        <button type="submit" className="flex-grow py-1 m-1 bg-red-800 text-white">
-                            COMPLETE
-                        </button>
-                    </div>
-                </form>
+            <div className='flex'>
+                <button
+                    onClick={handleNewPlayerClick}
+                    className='flex-grow py-1 m-1 mt-2 bg-red-800 text-white'>
+                    &#129095; CREATE NEW PLAYER &#129095;
+                </button>
             </div>
-            <div className='grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 mr-1'>
+            {showForm && (
+                <div>
+                    <form onSubmit={handleSubmit}>
+                        <div className="mr-1 flex flex-col">
+                            <div className="flex">
+                                <h2 className="m-2 mr-0 font-bold w-20">Player: </h2>
+                                <input
+                                    className="text-white placeholder-gray-300 bg-black bg-opacity-50 p-1 m-1 flex-grow rounded-sm w-24"
+                                    type="text"
+                                    placeholder="Player's name..."
+                                    name="playerName"
+                                    value={playerData.playerName}
+                                    onChange={handleChange}
+                                />
+                            </div>
+                            <div className="flex">
+                                <h2 className="m-2 mr-0 font-bold w-20">Character: </h2>
+                                <input
+                                    className="text-white placeholder-gray-300 bg-black bg-opacity-50 p-1 m-1 flex-grow rounded-sm w-24"
+                                    type="text"
+                                    placeholder="Name..."
+                                    name="characterName"
+                                    value={playerData.characterName}
+                                    onChange={handleChange}
+                                />
+                            </div>
+                            <div className="flex">
+                                <h2 className="m-2 mr-0 font-bold w-20">Class: </h2>
+                                <input
+                                    className="text-white placeholder-gray-300 bg-black bg-opacity-50 p-1 m-1 flex-grow rounded-sm w-24"
+                                    type="text"
+                                    placeholder="Class..."
+                                    name="class"
+                                    value={playerData.class}
+                                    onChange={handleChange}
+                                />
+                            </div>
+                            <div className="flex">
+                                <h2 className="m-2 mr-0 font-bold w-20">Race: </h2>
+                                <input
+                                    className="text-white placeholder-gray-300 bg-black bg-opacity-50 p-1 m-1 flex-grow rounded-sm w-24"
+                                    type="text"
+                                    placeholder="Race..."
+                                    name="race"
+                                    value={playerData.race}
+                                    onChange={handleChange}
+                                />
+                            </div>
+                            <div className="flex">
+                                <h2 className="m-2 mr-0 font-bold w-20">Notes: </h2>
+                                <textarea
+                                    className="text-white placeholder-gray-300 bg-black bg-opacity-50 p-1 m-1 flex-grow rounded-sm"
+                                    type="textarea"
+                                    placeholder="Notes..."
+                                    name="notes"
+                                    value={playerData.notes}
+                                    onChange={handleChange}
+                                />
+                            </div>
+                            <button type="submit" className="flex-grow py-1 m-1 mr-0 bg-red-800 text-white">
+                                COMPLETE
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            )}
+            <div className='grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2'>
                 {players.map(player => {
                     return (
                         <div key={player.playerID} className='text-gray-100 bg-black bg-opacity-50 m-1 px-1 rounded-md'>
