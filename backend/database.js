@@ -54,6 +54,22 @@ app.get('/api/playerCharacters/:id', async (req, res) => {
     }
 });
 
+// Route to update a player character by ID
+app.put('/api/playerCharacters/:id', async (req, res) => {
+    const playerId = req.params.id;
+    const { playerName, characterName, class: playerClass, race, notes } = req.body;
+    try {
+        const result = await pool.query("UPDATE playerCharacter SET playerName=?, characterName=?, class=?, race=?, notes=? WHERE playerID=?", [playerName, characterName, playerClass, race, notes, playerId]);
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ success: false, error: 'Player not found' });
+        }
+        res.json({ success: true, message: 'Player updated successfully' });
+    } catch (error) {
+        console.error('Error updating player: ', error);
+        res.status(500).json({ success: false, error: 'Internal Server Error' });
+    }
+});
+
 // Route to delete a player character by ID
 app.delete('/api/playerCharacters/:id', async (req, res) => {
     const playerId = req.params.id;

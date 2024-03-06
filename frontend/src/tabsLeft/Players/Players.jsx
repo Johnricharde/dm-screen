@@ -26,6 +26,17 @@ async function addPlayer(playerData) {
     return handleAPIRequest('http://localhost:3000/api/playerCharacters', options);
 }
 
+async function editPlayer(playerId, playerData) {
+    const options = {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(playerData),
+    };
+    return handleAPIRequest(`http://localhost:3000/api/playerCharacters/${playerId}`, options);
+}
+
 async function deletePlayer(playerId) {
     const options = {
         method: 'DELETE',
@@ -80,13 +91,29 @@ export default function Players() {
                 return;
             }
 
-            await addPlayer(playerData);
+            if (playerData.editingPlayerId) {
+                await editPlayer(playerData.editingPlayerId, playerData);
+            } else {
+                await addPlayer(playerData);
+            }
+
             setPlayerData(initialPlayerData);
             const updatedPlayers = await createPlayerElements();
             setPlayers(updatedPlayers);
         } catch (error) {
-            console.error('Failed to add player: ', error);
+            console.error('Failed to add/edit player: ', error);
         }
+    };
+
+    const handleEdit = (player) => {
+        setPlayerData({
+            playerName: player.playerName,
+            characterName: player.characterName,
+            class: player.class,
+            race: player.race,
+            notes: player.notes,
+            editingPlayerId: player.playerID
+        });
     };
 
     const handleDelete = async (playerId) => {
@@ -119,9 +146,9 @@ export default function Players() {
                         <div className="flex">
                             <h2 className="m-2 mr-0 font-bold w-20">Character: </h2>
                             <input
-                                className="placeholder-gray-200 bg-black bg-opacity-50 p-1 m-1 flex-grow rounded-sm w-24"
+                                className="text-white placeholder-gray-200 bg-black bg-opacity-50 p-1 m-1 flex-grow rounded-sm w-24"
                                 type="text"
-                                placeholder="Character's name..."
+                                placeholder="Name..."
                                 name="characterName"
                                 value={playerData.characterName}
                                 onChange={handleChange}
@@ -130,9 +157,9 @@ export default function Players() {
                         <div className="flex">
                             <h2 className="m-2 mr-0 font-bold w-20">Class: </h2>
                             <input
-                                className="placeholder-gray-200 bg-black bg-opacity-50 p-1 m-1 flex-grow rounded-sm w-24"
+                                className="text-white placeholder-gray-200 bg-black bg-opacity-50 p-1 m-1 flex-grow rounded-sm w-24"
                                 type="text"
-                                placeholder="Character's class..."
+                                placeholder="Class..."
                                 name="class"
                                 value={playerData.class}
                                 onChange={handleChange}
@@ -141,9 +168,9 @@ export default function Players() {
                         <div className="flex">
                             <h2 className="m-2 mr-0 font-bold w-20">Race: </h2>
                             <input
-                                className="placeholder-gray-200 bg-black bg-opacity-50 p-1 m-1 flex-grow rounded-sm w-24"
+                                className="text-white placeholder-gray-200 bg-black bg-opacity-50 p-1 m-1 flex-grow rounded-sm w-24"
                                 type="text"
-                                placeholder="Character's race..."
+                                placeholder="Race..."
                                 name="race"
                                 value={playerData.race}
                                 onChange={handleChange}
@@ -152,7 +179,7 @@ export default function Players() {
                         <div className="flex">
                             <h2 className="m-2 mr-0 font-bold w-20">Notes: </h2>
                             <textarea
-                                className="placeholder-gray-200 bg-black bg-opacity-50 p-1 m-1 flex-grow rounded-sm"
+                                className="text-white placeholder-gray-200 bg-black bg-opacity-50 p-1 m-1 flex-grow rounded-sm"
                                 type="textarea"
                                 placeholder="Notes..."
                                 name="notes"
@@ -161,7 +188,7 @@ export default function Players() {
                             />
                         </div>
                         <button type="submit" className="flex-grow py-1 m-1 bg-red-800 text-white">
-                            Add Player
+                            COMPLETE
                         </button>
                     </div>
                 </form>
@@ -178,9 +205,14 @@ export default function Players() {
                             <p className='text-wrap max-w-90'>{player.notes}</p>
                             <hr></hr>
                             <button
+                                className="mr-1 my-1 flex-grow py-1 bg-cyan-800 text-white"
+                                onClick={() => handleEdit(player)}>
+                                EDIT
+                            </button>
+                            <button
                                 className="my-1 flex-grow py-1 bg-red-800 text-white"
                                 onClick={() => handleDelete(player.playerID)}>
-                                Delete
+                                DELETE
                             </button>
                         </div>
                     );
