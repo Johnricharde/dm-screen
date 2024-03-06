@@ -20,7 +20,7 @@ export default function Rules() {
 
 
     return (
-        <div className="mx-2">
+        <div className="mx-1">
             {/* Search bar with autocomplete */}
             <Search
                 apiEndpoint="https://www.dnd5eapi.co/api/rule-sections"
@@ -29,9 +29,11 @@ export default function Rules() {
             {/* Display the filtered spell */}
             {selectedRule && (
                 <>
-                    <h1 className="text-2xl font-bold">{selectedRule.name}</h1>
-                    <ReactMarkdown remarkPlugins={[remarkGfm]}>{selectedRule.desc}</ReactMarkdown>
-                    <br />
+                    <div className="ml-2">
+                        <h1 className="text-2xl font-bold">{selectedRule.name}</h1>
+                        <ReactMarkdown remarkPlugins={[remarkGfm]}>{selectedRule.desc}</ReactMarkdown>
+                        <br />
+                    </div>
                 </>
             )}
         </div>

@@ -19,7 +19,7 @@ const Monsters = () => {
     }
 
     return (
-        <div className="mx-2">
+        <div className="mx-1">
             {/* Search bar with autocomplete */}
             <Search
                 apiEndpoint="https://www.dnd5eapi.co/api/monsters"
@@ -39,11 +39,12 @@ const Monsters = () => {
                             {' ' + selectedMonster.alignment}
                         </h2>
                     </div>
-
-                    <h2><span className="font-bold">Armor Class </span>{selectedMonster.armor_class[0].value}</h2>
-                    <h2><span className="font-bold">Hit Points </span>{selectedMonster.hit_points} ({selectedMonster.hit_dice})</h2>
-                    <h2><span className="font-bold">Speed </span>{selectedMonster.speed.walk}</h2>
-                    <h2><span className="font-bold">Initiative </span>{calculateModifier(selectedMonster.dexterity)}</h2>
+                    <div className="ml-2">
+                        <h2><span className="font-bold">Armor Class </span>{selectedMonster.armor_class[0].value}</h2>
+                        <h2><span className="font-bold">Hit Points </span>{selectedMonster.hit_points} ({selectedMonster.hit_dice})</h2>
+                        <h2><span className="font-bold">Speed </span>{selectedMonster.speed.walk}</h2>
+                        <h2><span className="font-bold">Initiative </span>{calculateModifier(selectedMonster.dexterity)}</h2>
+                    </div>
                     <h2 className="font-bold flex justify-space">
                         <h3 className="p-2 grid gap-1 grid-cols-2 sm:grid-cols-3 lg:grid-cols-6">
                             <div className="px-3 py-1 rounded-lg text-gray-100 bg-black bg-opacity-40">
@@ -96,26 +97,32 @@ const Monsters = () => {
                             </div>
                         </h3>
                     </h2 >
-                    <h2><span className="font-bold">Senses </span>
-                        Darkvision {selectedMonster.senses.darkvision},
-                        Passive Perception {selectedMonster.senses.passive_perception}
-                    </h2>
+                    <div className="ml-2">
+                        <h2><span className="font-bold">Senses </span>
+                            Darkvision {selectedMonster.senses.darkvision},
+                            Passive Perception {selectedMonster.senses.passive_perception}
+                        </h2>
 
-                    <h2><span className="font-bold">Languages </span>
-                        {selectedMonster.languages}
-                    </h2>
-                    <h2>
-                        <span className="font-bold">Challenge </span>
-                        {formatChallengeRating(selectedMonster.challenge_rating)} ({selectedMonster.xp} XP)
-                    </h2>
-                    <h2><span className="font-bold">Proficiency Bonus </span>
-                        +{selectedMonster.proficiency_bonus}
-                    </h2>
-                    <br />
+                        <h2><span className="font-bold">Languages </span>
+                            {selectedMonster.languages}
+                        </h2>
+                        <h2>
+                            <span className="font-bold">Challenge </span>
+                            {formatChallengeRating(selectedMonster.challenge_rating)} ({selectedMonster.xp} XP)
+                        </h2>
+                        <h2><span className="font-bold">Proficiency Bonus </span>
+                            +{selectedMonster.proficiency_bonus}
+                        </h2>
+                        <br />
 
-                    {getObjects(selectedMonster.special_abilities)}
-                    <h1 className="text-gray-100 bg-black bg-opacity-50 text-2xl font-bold px-2 pb-1 rounded-md">Actions</h1>
-                    {getObjects(selectedMonster.actions)}
+                        {getObjects(selectedMonster.special_abilities)}
+                    </div>
+                    <h1 className="text-gray-100 bg-black bg-opacity-50 text-2xl font-bold px-2 pb-1 rounded-md">
+                        Actions
+                    </h1>
+                    <div className="ml-2">
+                        {getObjects(selectedMonster.actions)}
+                    </div>
                 </>
             )}
         </div >

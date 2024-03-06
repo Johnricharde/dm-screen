@@ -19,7 +19,7 @@ const Spells = () => {
     const formatSpellLevel = (level) => (level === 0 ? "Cantrip" : `${level}${[undefined, "st", "nd", "rd"][(level % 100 - 20) % 10] || "th"} level`);
 
     return (
-        <div className="mx-2">
+        <div className="mx-1">
             {/* Search bar with autocomplete */}
             <Search
                 apiEndpoint="https://www.dnd5eapi.co/api/spells"
@@ -32,23 +32,24 @@ const Spells = () => {
                         <h1 className="text-2xl font-bold">{selectedSpell.name}</h1>
                         <h2 className="italic">{formatSpellLevel(selectedSpell.level)} {selectedSpell.school.name}</h2>
                     </div>
-                    <h2><span className="font-bold">Casting Time: </span>{selectedSpell.casting_time}</h2>
-                    <h2><span className="font-bold">Range: </span>{selectedSpell.range}</h2>
-                    <h2><span className="font-bold">Components: </span>{selectedSpell.components.join(', ')}</h2>
-                    <h2><span className="font-bold">Duration: </span>{selectedSpell.duration}</h2>
-                    <br />
-                    <p>{selectedSpell.desc}</p>
-                    {
-                        selectedSpell.higher_level != 0 && (
-                            <h2>
-                                <br />
-                                <div className="text-gray-100 bg-black bg-opacity-50 px-2 pb-1 mt-2 rounded-md">
-                                    <span className="font-bold">At Higher Levels. </span><br />
-                                    {selectedSpell.higher_level}
-                                </div>
-                            </h2>
-                        )}
-                    <br />
+                    <div className="ml-2">
+                        <h2><span className="font-bold">Casting Time: </span>{selectedSpell.casting_time}</h2>
+                        <h2><span className="font-bold">Range: </span>{selectedSpell.range}</h2>
+                        <h2><span className="font-bold">Components: </span>{selectedSpell.components.join(', ')}</h2>
+                        <h2><span className="font-bold">Duration: </span>{selectedSpell.duration}</h2>
+                        <br />
+                        <p>{selectedSpell.desc}</p>
+                        {
+                            selectedSpell.higher_level != 0 && (
+                                <h2>
+                                    <br />
+                                    <div className="text-gray-100 bg-black bg-opacity-50 px-2 pb-1 mt-2 rounded-md">
+                                        <span className="font-bold">At Higher Levels. </span><br />
+                                        {selectedSpell.higher_level}
+                                    </div>
+                                </h2>
+                            )}
+                    </div>
                 </>
             )}
         </div>
