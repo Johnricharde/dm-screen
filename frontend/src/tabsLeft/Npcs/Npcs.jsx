@@ -23,7 +23,7 @@ async function addNpc(npcData) {
         },
         body: JSON.stringify(npcData),
     };
-    return handleAPIRequest('http://localhost:3000/api/nonPlayerCharacters', options);
+    return handleAPIRequest('http://localhost:3100/api/nonPlayerCharacters', options);
 }
 
 async function editNpc(npcId, npcData) {
@@ -34,14 +34,14 @@ async function editNpc(npcId, npcData) {
         },
         body: JSON.stringify(npcData),
     };
-    return handleAPIRequest(`http://localhost:3000/api/nonPlayerCharacters/${npcId}`, options);
+    return handleAPIRequest(`http://localhost:3100/api/nonPlayerCharacters/${npcId}`, options);
 }
 
 async function deleteNpc(npcId) {
     const options = {
         method: 'DELETE',
     };
-    return handleAPIRequest(`http://localhost:3000/api/nonPlayerCharacters/${npcId}`, options);
+    return handleAPIRequest(`http://localhost:3100/api/nonPlayerCharacters/${npcId}`, options);
 }
 
 export default function Npcs() {
@@ -145,7 +145,7 @@ export default function Npcs() {
                                     className="text-white placeholder-gray-300 bg-black bg-opacity-50 p-1 m-1 flex-grow rounded-sm w-24"
                                     type="text"
                                     placeholder="Character's name..."
-                                    name="name"
+                                    name="npcName"
                                     value={npcData.npcName}
                                     onChange={handleChange}
                                 />
@@ -180,24 +180,22 @@ export default function Npcs() {
                 </div>
             )}
             <div className='grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2'>
-                {npcs.map(player => {
+                {npcs.map(npc => {
                     return (
-                        <div key={player.npcID} className='text-gray-100 bg-black bg-opacity-50 m-1 px-1 rounded-md'>
-                            <h2><span className="font-bold">Player: </span>{player.playerName}</h2>
-                            <h2><span className="font-bold">Character: </span>{player.characterName}</h2>
-                            <h2><span className="font-bold">Class: </span>{player.class}</h2>
-                            <h2><span className="font-bold">Race: </span>{player.race}</h2>
+                        <div key={npc.npcID} className='text-gray-100 bg-black bg-opacity-50 m-1 px-1 rounded-md'>
+                            <h2><span className="font-bold">Name: </span>{npc.npcName}</h2>
+                            <h2><span className="font-bold">Occupation: </span>{npc.npcOccupation}</h2>
                             <h2 className="font-bold">Notes:</h2>
-                            <p className='text-wrap max-w-90'>{player.notes}</p>
+                            <p className='text-wrap max-w-90'>{npc.notes}</p>
                             <hr></hr>
                             <button
                                 className="mr-1 my-1 flex-grow py-1 bg-cyan-800 text-white"
-                                onClick={() => handleEdit(player)}>
+                                onClick={() => handleEdit(npc)}>
                                 EDIT
                             </button>
                             <button
                                 className="my-1 flex-grow py-1 bg-red-800 text-white"
-                                onClick={() => handleDelete(player.npcID)}>
+                                onClick={() => handleDelete(npc.npcID)}>
                                 DELETE
                             </button>
                         </div>

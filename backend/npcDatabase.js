@@ -6,7 +6,7 @@ import bodyParser from 'body-parser';
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
-const port = 3010;
+const port = 3100;
 
 const pool = mysql.createPool({
     host: '127.0.0.1',
@@ -21,7 +21,7 @@ const pool = mysql.createPool({
 app.post('/api/nonPlayerCharacters', async (req, res) => {
     const { npcName, npcOccupation, notes } = req.body;
     try {
-        const result = await pool.query("INSERT INTO nonPlayerCharacter (npcName, npcOccupation, notes) VALUES (?, ?, ?, ?, ?)", [playerName, characterName, playerClass, race, notes]);
+        const result = await pool.query("INSERT INTO nonPlayerCharacter (npcName, npcOccupation, notes) VALUES (?, ?, ?)", [npcName, npcOccupation, notes]);
         res.status(201).json({ success: true, message: 'Npc added successfully' });
     } catch (error) {
         console.error('Error adding npc: ', error);
