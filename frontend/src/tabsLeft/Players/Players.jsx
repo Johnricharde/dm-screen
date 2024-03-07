@@ -108,6 +108,7 @@ export default function Players() {
     };
 
     const handleEdit = (player) => {
+        setShowForm(true);
         setPlayerData({
             playerName: player.playerName,
             characterName: player.characterName,

@@ -104,8 +104,9 @@ export default function Npcs() {
     };
 
     const handleEdit = (npc) => {
+        setShowForm(true);
         setnpcData({
-            npcName: npc.playerName,
+            npcName: npc.npcName,
             npcOccupation: npc.npcOccupation,
             notes: npc.notes,
             editingnpcId: npc.npcID
@@ -140,7 +141,7 @@ export default function Npcs() {
                     <form onSubmit={handleSubmit}>
                         <div className="mr-1 flex flex-col">
                             <div className="flex">
-                                <h2 className="m-2 mr-0 font-bold w-20">Player: </h2>
+                                <h2 className="m-2 mr-0 font-bold w-24">Player: </h2>
                                 <input
                                     className="text-white placeholder-gray-300 bg-black bg-opacity-50 p-1 m-1 flex-grow rounded-sm w-24"
                                     type="text"
@@ -151,7 +152,7 @@ export default function Npcs() {
                                 />
                             </div>
                             <div className="flex">
-                                <h2 className="m-2 mr-0 font-bold w-20">Occupation: </h2>
+                                <h2 className="m-2 mr-0 font-bold w-24">Occupation: </h2>
                                 <input
                                     className="text-white placeholder-gray-300 bg-black bg-opacity-50 p-1 m-1 flex-grow rounded-sm w-24"
                                     type="text"
@@ -162,7 +163,7 @@ export default function Npcs() {
                                 />
                             </div>
                             <div className="flex">
-                                <h2 className="m-2 mr-0 font-bold w-20">Notes: </h2>
+                                <h2 className="m-2 mr-0 font-bold w-24">Notes: </h2>
                                 <textarea
                                     className="text-white placeholder-gray-300 bg-black bg-opacity-50 p-1 m-1 flex-grow rounded-sm"
                                     type="textarea"
