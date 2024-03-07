@@ -11,7 +11,6 @@ For those who are already familiar with D&D, here are some of the things that th
 - Keep track of personalized "Cards" with basic information about:
 1. Player Characters
 2. Non-Player Characters
-3. Quests
 - Easy Search access to information contained within the D&D 5E rulebook, spellbook or bestiary.
 
 ### Tech:
