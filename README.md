@@ -21,6 +21,8 @@ For those who are already familiar with D&D, here are some of the things that th
 - VS Code
 - MySql
 
+![Skjermbilde 2024-03-08 095836](https://github.com/Johnricharde/dm-screen/assets/117681128/5d98ae4f-7905-4279-94b7-c471a18fc9cd)
+
 ### Acknowledgements:
 - Original Concept idea came from Stian Sundby at GET Academy
 - This app uses the D&D API from "https://www.dnd5eapi.co".
