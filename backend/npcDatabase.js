@@ -2,18 +2,21 @@ import mysql from 'mysql2';
 import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
-const port = 3100;
+const port = process.env.SERVICE_PORT2;
 
 const pool = mysql.createPool({
-    host: '127.0.0.1',
-    user: 'root',
-    password: 'Badonkadonk69.',
-    database: 'dm_screen_db'
-}).promise()
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_DATABASE
+}).promise();
 
 
 // FOR THE "Npcs.jsx"
